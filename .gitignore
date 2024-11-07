@@ -2,7 +2,7 @@ inputs/data_Gbif
 inputs/data_Gbif_for_debug
 inputs/data_RF_Gbif
 inputs/data_RLS
-inputs/data_RF_RLS
+inputs/data_RF_RSL
 inputs/output_RF_abundace
 inputs/outputs_cnn_sdm_abundance_with_tl
 inputs/outputs_cnn_sdm_abundance_without_tl
