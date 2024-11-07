@@ -1,0 +1,41 @@
+{
+    // Utilisez IntelliSense pour en savoir plus sur les attributs possibles.
+    // Pointez pour afficher la description des attributs existants.
+    // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python : defaut",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+        },
+
+        {
+            "name": "Python : cnn_multi_band",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["optimizer.loss.loss_type=KoLeoLoss",
+            "callbacks.monitor=val_accuracy_macro",
+            "callbacks.mode='max'",
+            "optimizer.scheduler.metric_to_track=val_loss",
+            "optimizer.scheduler.mode='min'",
+            "optimizer.scheduler.patience=1",
+            "optimizer.scheduler.cooldown=1",
+            "optimizer.scheduler.factor=0.1",
+            "optimizer.scheduler.threshold=0.001",
+            "optimizer.SGD.lr=0.002",
+            "model.model_name='resnet50'",
+            "dropout_proba=0",
+            "visualization.auto_lr_finder=False",
+            "dataloader.train_methode=weighted_sampler",],
+            "cwd": "${fileDirname}"
+        }
+    ]
+}

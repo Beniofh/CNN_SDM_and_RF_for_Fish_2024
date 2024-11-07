@@ -1,0 +1,2 @@
+test_loss,test_r2score_matrix_log,test_mean_absolute_error,test_mean_absolute_log_error,test_mean_squared_error,test_mean_squared_log_error,test_r2score_mean_by_site,test_r2score_mean_by_site_of_log,epoch,step
+0.4749205708503723,0.3788498044013977,37.394710540771484,0.4749205708503723,1.1467219591140747,0.15257984399795532,0.024091092869639397,0.3777911961078644,0,0

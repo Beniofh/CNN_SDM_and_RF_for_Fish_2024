@@ -1,0 +1,315 @@
+trainer:
+  accelerator: gpu
+  devices: 1
+  max_epochs: 300
+  val_check_interval: 0.5
+model:
+  provider_name: torchvision
+  model_name: resnet50
+  model_kwargs:
+    pretrained: true
+  modifiers:
+    change_first_convolutional_layer:
+      num_input_channels: auto
+      new_conv_layer_init_func:
+        _target_: init_elements.NewConvolutionalLayerInitFuncStrategy
+        strategy: red_pretraining
+        rescaling: true
+    change_last_layer:
+      num_outputs: auto
+dropout_proba: 0.3
+optimizer:
+  SGD:
+    lr: 0.01
+    weight_decay: 0.001
+    momentum: 0.9
+    nesterov: true
+  scheduler:
+    metric_to_track: val_loss
+    mode: min
+    factor: 0.1
+    patience: 1
+    threshold: 0.001
+    cooldown: 1
+    logging_interval: epoch
+  loss:
+    loss_type: KoLeoLoss
+    k: 10
+    epsilon: 0.01
+    max_m: 0.3
+train_augmentation:
+  random_rotation:
+    tr_rr_activation: false
+    tr_rr_degrees: (0, 0)
+    tr_rr_center_crop: 215
+  crop:
+    tr_c_activation: random_crop
+    tr_c_size: (212,212)
+  resize:
+    tr_r_activation: true
+    tr_r_size: 256
+test_augmentation:
+  random_rotation:
+    te_rr_activation: false
+    te_rr_degrees: (-10, 10)
+    te_rr_center_crop: 215
+  crop:
+    te_c_activation: center_crop
+    te_c_size: (212,212)
+  resize:
+    te_r_activation: true
+    te_r_size: 256
+dataloader:
+  train_methode: shuffle
+data:
+  dataset_path: /home/bbourel/Data/malpolon_datasets/Fish-refined
+  csv_occurence_path: /home/bbourel/Data/malpolon_datasets/Fish-refined/Fish-refined_clean_subset_v2.csv
+  csv_separator: ','
+  csv_col_occurence_id: id
+  csv_col_class_id: species_classes
+  train_batch_size: 32
+  inference_batch_size: 256
+  num_workers: 8
+patch:
+  patch_data:
+  - TCI_sentinel
+  - B08_sentinel
+  - bathy_95m
+  - chlorophyll_concentration_1km
+  - east_water_velocity_4_2km_mean_day_lite
+  - east_water_velocity_4_2km_mean_month_lite
+  - meditereanean_sst
+  - north_water_velocity_4_2km_mean_day_lite
+  - north_water_velocity_4_2km_mean_month_lite
+  - occ_lat_long
+  - salinity_4_2km_mean_day_lite
+  - salinity_4_2km_mean_month_lite
+  - sea_water_potential_temperature_at_sea_floor_4_2km_mean_day
+  - sea_water_potential_temperature_at_sea_floor_4_2km_mean_month
+  - substrate
+  patch_band_mean:
+    TCI_sentinel:
+    - 36.66
+    - 47.93
+    - 65.42
+    B01_sentinel:
+    - 2314.5
+    B02_sentinel:
+    - 2002.3
+    B03_sentinel:
+    - 1763.2
+    B04_sentinel:
+    - 1628.0
+    B05_sentinel:
+    - 1698.4
+    B06_sentinel:
+    - 1981.6
+    B07_sentinel:
+    - 2110.9
+    B8A_sentinel:
+    - 2191.5
+    B08_sentinel:
+    - 2061.9
+    B09_sentinel:
+    - 1336.6
+    B11_sentinel:
+    - 1937.6
+    B12_sentinel:
+    - 1592.2
+    bathymetry:
+    - -104.6
+    bathy_95m:
+    - -110.7
+    chlorophyll_concentration_1km:
+    - 0.152
+    meditereanean_sst:
+    - 294.95
+    east_water_velocity_4_2km_mean_day_lite:
+    - -0.055
+    - -0.06
+    - -0.051
+    east_water_velocity_4_2km_mean_month_lite:
+    - -0.057
+    - -0.061
+    - -0.052
+    east_water_velocity_4_2km_mean_year_lite:
+    - -0.056
+    - -0.06
+    - -0.053
+    fishing_pressure: 'NaN'
+    full_true_clean_subset:
+    - 49.45
+    - 49.62
+    - 49.48
+    mpa:
+    - 0.7243
+    north_water_velocity_4_2km_mean_day_lite:
+    - -0.056
+    - -0.033
+    - -0.027
+    north_water_velocity_4_2km_mean_month_lite:
+    - -0.057
+    - -0.035
+    - -0.028
+    north_water_velocity_4_2km_mean_year_lite:
+    - -0.05
+    - -0.036
+    - -0.031
+    occ_lat_long:
+    - 42.016
+    - 8.6259
+    salinity_4_2km_mean_day_lite:
+    - 38.15
+    - 38.17
+    - 38.02
+    salinity_4_2km_mean_month_lite:
+    - 38.15
+    - 38.18
+    - 38.02
+    salinity_4_2km_mean_year_lite:
+    - 38.18
+    - 38.21
+    - 38.05
+    sea_water_potential_temperature_at_sea_floor_4_2km_mean_day:
+    - 14.31
+    sea_water_potential_temperature_at_sea_floor_4_2km_mean_month:
+    - 14.32
+    sea_water_potential_temperature_at_sea_floor_4_2km_mean_year:
+    - 14.06
+    substrate: 'NaN'
+  patch_band_sd:
+    TCI_sentinel:
+    - 35.71
+    - 28.12
+    - 22.82
+    B01_sentinel:
+    - 358.5
+    B02_sentinel:
+    - 407.0
+    B03_sentinel:
+    - 488.7
+    B04_sentinel:
+    - 631.7
+    B05_sentinel:
+    - 699.1
+    B06_sentinel:
+    - 1007.9
+    B07_sentinel:
+    - 1190.0
+    B8A_sentinel:
+    - 1336.8
+    B08_sentinel:
+    - 1181.9
+    B09_sentinel:
+    - 433.9
+    B11_sentinel:
+    - 1109.0
+    B12_sentinel:
+    - 811.3
+    bathymetry:
+    - 504.24
+    bathy_95m:
+    - 169.8
+    chlorophyll_concentration_1km:
+    - 0.36
+    meditereanean_sst:
+    - 3.92
+    east_water_velocity_4_2km_mean_day_lite:
+    - 0.138
+    - 0.123
+    - 0.106
+    east_water_velocity_4_2km_mean_month_lite:
+    - 0.115
+    - 0.107
+    - 0.092
+    east_water_velocity_4_2km_mean_year_lite:
+    - 0.1
+    - 0.096
+    - 0.085
+    fishing_pressure: 'NaN'
+    full_true_clean_subset:
+    - 28.95
+    - 28.79
+    - 28.81
+    mpa:
+    - 1.4956
+    north_water_velocity_4_2km_mean_day_lite:
+    - 0.135
+    - 0.117
+    - 0.099
+    north_water_velocity_4_2km_mean_month_lite:
+    - 0.106
+    - 0.1
+    - 0.085
+    north_water_velocity_4_2km_mean_year_lite:
+    - 0.088
+    - 0.085
+    - 0.075
+    occ_lat_long:
+    - 2.2855
+    - 6.2313
+    salinity_4_2km_mean_day_lite:
+    - 0.48
+    - 0.38
+    - 0.4
+    salinity_4_2km_mean_month_lite:
+    - 0.47
+    - 0.38
+    - 0.4
+    salinity_4_2km_mean_year_lite:
+    - 0.42
+    - 0.35
+    - 0.39
+    sea_water_potential_temperature_at_sea_floor_4_2km_mean_day:
+    - 1.88
+    sea_water_potential_temperature_at_sea_floor_4_2km_mean_month:
+    - 1.86
+    sea_water_potential_temperature_at_sea_floor_4_2km_mean_year:
+    - 1.14
+    substrate: 'NaN'
+callbacks:
+  monitor: val_accuracy_macro
+  mode: max
+  patience: 20
+visualization:
+  graph: true
+  check_dataloader: false
+  auto_lr_finder: false
+  validate_metric: false
+  chk_path_validate_metric: /home/bbourel/Documents/Fish-Predict/Archive_output_malpolon/Exp_RLS_local/2024-03-15_15-55-35_626984/checkpoint-epoch=17-step=140-val_r2score_mean_by_site_of_log=0.2242.ckpt
+transfer_learning:
+  transfer_learning_activated: true
+  load_checkpoint: true
+  chk_path: /home/bbourel/Documents/IA/malpolon/examples_perso/multiband_unimodel/jean_zay/checkpoint_for_load/2023-10-06_16-16-38_085373/checkpoint-epoch=09-step=11400-val_accuracy=0.0804.ckpt
+  model_tf:
+    num_outputs_tf: 47
+    fize_all_layer: true
+    unfreeze_layer:
+    - 1
+    - 2
+    - 3
+    - 4
+    load_checkpoint_for_model_tf: false
+    chk_tf_path: /home/bbourel/Documents/IA/malpolon/examples_perso/multiband_unimodel/outputs/cnn_multi_band/2024-06-25_10-08-02_666761/checkpoint-epoch=27-step=247-val_r2score_mean_by_site_of_log=0.5036.ckpt
+  optimizer_tf:
+    loss_type: L1Loss
+    lr: 0.1
+    scheduler:
+      metric_to_track: val_r2score_mean_by_site_of_log
+      mode: max
+      factor: 0.5
+      patience: 0
+      threshold: 0.001
+      cooldown: 2
+      logging_interval: epoch
+  dropout_proba: 0.3
+  data_tf:
+    dataset_path: /home/bbourel/Data/malpolon_datasets/Galaxy117-Sort_on_data_82
+    csv_occurence_path: /home/bbourel/Data/malpolon_datasets/Galaxy117-Sort_on_data_82/Galaxy117-Sort_on_data_82_n_vec_subset_14.csv
+    csv_separator: ','
+    csv_col_occurence_id: SurveyID
+    csv_col_class_id: species_abundance_vec
+  callbacks_tf:
+    monitor: val_r2score_mean_by_site_of_log
+    mode: max
+    patience: 10
