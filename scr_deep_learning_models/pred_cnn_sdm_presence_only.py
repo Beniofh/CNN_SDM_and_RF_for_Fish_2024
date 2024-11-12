@@ -46,14 +46,31 @@ def main(cfg: DictConfig) -> None:
     # Alternative 3.1 : mise en place pour l'Alternative 3.2
     if cfg.visualization.validate_metric == True : 
         path_chk=Path(cfg.visualization.chk_path_validate_metric)
+        '''
         path_yaml=path_chk.parent / "hparams.yaml"
         import yaml
         with open(path_yaml, 'r') as file:
             cfg = yaml.safe_load(file)
-
         cfg=OmegaConf.create(cfg)
         cfg.visualization.validate_metric = True
         cfg.visualization.chk_path_validate_metric = path_chk
+        '''
+        path_yaml=path_chk.parent / ".hydra/config.yaml"
+        import yaml
+        with open(path_yaml, 'r') as file:
+            cfg = yaml.safe_load(file)
+        cfg = OmegaConf.create(cfg)
+        os.chdir(os.path.dirname(__file__))
+        cfg.data.dataset_path = os.path.abspath(cfg.data.dataset_path)
+        cfg.data.csv_occurence_path = os.path.abspath(cfg.data.csv_occurence_path)
+        cfg.visualization.chk_path_validate_metric = path_chk
+        cfg.transfer_learning.chk_path = os.path.abspath(cfg.transfer_learning.chk_path)
+        cfg.transfer_learning.model_tf.chk_tf_path = os.path.abspath(cfg.transfer_learning.model_tf.chk_tf_path)
+        cfg.transfer_learning.data_tf.dataset_path = os.path.abspath(cfg.transfer_learning.data_tf.dataset_path)
+        cfg.transfer_learning.data_tf.csv_occurence_path = os.path.abspath(cfg.transfer_learning.data_tf.csv_occurence_path)
+        cfg.visualization.chk_path_validate_metric = path_chk
+        cfg.visualization.validate_metric = True
+        os.chdir(repertoire_courant_original)
         
     cls_num_list_train, patch_data_ext, cfg, cfg_modif, patch_band = Init_of_secondary_parameters(cfg=cfg)
 
