@@ -54,9 +54,7 @@ Number of CUDA-compatible devices found: 1
 ```
 
 ### **II.3. Downloading data** 
-<span style="color:green">
 The input and output data used in our article and needed to run the scripts are not directly on the GitHub repository because they are too large. This data is available [`here`](https://lab.plantnet.org/seafile/d/387e43c4f1ae495c96ba/). They should be available in Inria (National Institute for Research in Digital Science and Technology) open data repository in the near future.
-</span>
 
 The downloadable data consists of three .zip files :<br>
 
