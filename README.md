@@ -92,7 +92,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
 
   <details>
-  <summary>**cnn_sdm_presence_only.py** (<i> Click here to expand description</i>)</summary>
+  <summary> **cnn_sdm_presence_only.py** (<i> Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
   - <u>Description:</u> It trains a CNN-SDM to predict the occurrences of 181 fish species based on 62,241 presence-only from Gbif. For each occurrence of fish, the corresponding environmental dataset is made up of 15 rasters representing 14 environmental covariates and a satellite image. Each raster is spatially centred on the GPS position of the associated occurrence. ⚠️ This script requires optional data to be downloaded (see part II.3). Running this script requires a lot of resources. It is recommended that you run it on a supercomputer, as it will not work on a personal machine.  
