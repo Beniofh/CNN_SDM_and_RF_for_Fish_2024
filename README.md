@@ -92,7 +92,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
 
   <details>
-  <summary> <b>)cnn_sdm_presence_only.py</b> (<i> Click here to expand description</i>)</summary>
+  <summary> <b>cnn_sdm_presence_only.py</b> (<i> Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
   - <u>Description:</u> It trains a CNN-SDM to predict the occurrences of 181 fish species based on 62,241 presence-only from Gbif. For each occurrence of fish, the corresponding environmental dataset is made up of 15 rasters representing 14 environmental covariates and a satellite image. Each raster is spatially centred on the GPS position of the associated occurrence. ⚠️ This script requires optional data to be downloaded (see part II.3). Running this script requires a lot of resources. It is recommended that you run it on a supercomputer, as it will not work on a personal machine.  
@@ -107,7 +107,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
 
   <details>
-  <summary>**cnn_sdm_presence_only_for_debug.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>cnn_sdm_presence_only_for_debug.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
   
   - <u>Description:</u> It does the same thing as the cnn_sdm_presence_only.py script except that it uses a very reduced version of the Gbif dataset (96 presence of only 32 fish species). This dataset is not sufficient to obtain suitable results, but it allows you to see how the cnn_sdm_presence_only.py script works without needing a supercomputer.
@@ -123,7 +123,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
   
   <details>
-  <summary>**cnn_sdm_abundance_without_tl.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>cnn_sdm_abundance_without_tl.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
   
   - <u>Description:</u> It is used to train a CNN-SDM for predicting species abundance based on 406 fish counts representing 47 species. The count data comes from the database of the Reef Life Survey program carried out in the Mediterranean Sea between 2011 and 2020. For each fish count, the corresponding environmental dataset is made up of 15 rasters representing 14 environmental covariates and a satellite image (the same as for occurrence models). Each raster is spatially centred on the GPS position of the associated fish count. As stated in the article, the results of CNN-SDMs for fish abundances are based on a k-fold cross-validation, using k=20 random spatial block splits from the dataset of fish abundances. The default setting for this script is to reproduce the results for flod n°0. You can run the script for the other folds by modifying the `transfer_learning.data_tf.csv_occurence_path` value in the configuration file. For example, to reproduce the results for fold 12, replace ../inputs/data_RLS/Galaxy117-Sort_on_data_82_n_vec_subset_0.csv with ../inputs/data_RLS/Galaxy117-Sort_on_data_82_n_vec_subset_12.csv.
@@ -141,7 +141,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
 
   <details>
-  <summary>**cnn_sdm_abundance_with_tl.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>cnn_sdm_abundance_with_tl.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
   
   - <u>Description:</u> As for `cnn_sdm_abundance_without_tl.py`, but applying transfer learning from a model trained on presence data only with the script `cnn_sdm_presence_only.py`.
@@ -162,7 +162,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
 
   <details>
-  <summary>**pred_cnn_sdm_presence_only.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>pred_cnn_sdm_presence_only.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
   
   - <u>Description:</u> It is used to calculate the metic values for the validation and test sets for a CNN-SDM trained in presence-only with cnn_sdm_presence_only.py. ⚠️This script requires optional data to be downloaded (see part II.3). Running this script requires a lot of resources. It is recommended that you run it on a supercomputer, as it will not work on a personal machine.
@@ -180,7 +180,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
 
   <details>
-  <summary>**pred_cnn_sdm_presence_only_for_debug.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>pred_cnn_sdm_presence_only_for_debug.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
   
   - <u>Description:</u> It is used to calculate the metic values for the validation and test sets for a CNN-SDM trained in presence-only with `cnn_sdm_presence_only_for_debug.py`.
@@ -218,7 +218,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
   
   <details>
-  <summary>**pred_cnn_sdm_abundance_with_tl.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>pred_cnn_sdm_abundance_with_tl.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
   - <u>Description:</u> It uses a CNN-SDM trained, with `cnn_sdm_abundance_without_tl.py`, to predict abundance with transfer learning to predict the abundance of 47 poission species for each site.
@@ -238,7 +238,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
 
   <details>
-  <summary>**pred_RF_presence-only.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>pred_RF_presence-only.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
   
   - <u>Description:</u> It trains a CNN-SDM to predict the occurrences of 181 fish species based on 62,241 presence-only from Gbif. For each occurrence of fish, the corresponding environmental dataset is made up of 15 rasters representing 14 environmental covariates and a satellite image. RFs cannot deal directly with the rasterised environmental data as the CNN-SDM does (this leads to strong over-fitting). To solve this problem, we use the mean of the pixels and the standard deviation of each raster used with sdm_abundance_presence_only.py.
@@ -272,7 +272,7 @@ The scripts to be run to reproduce the metrics tables and figures in the article
 <br>
 
   <details>
-  <summary>**metric.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>metric.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
   - <u>Description:</u> For each of the three abundance models presented in the article (CNN-SDM without transfer learning, CNN-SDM with transfer learning and RF), it calculates the values of the three metrics presented in the article (D-squared regression score function on the log-transformed data, the Spearman rank-order coefficient, and the R-squared regression score function on Log-transformed data) on the test data for the 20 training cycles of the model associated with each of the 20 folds.
@@ -286,7 +286,7 @@ The scripts to be run to reproduce the metrics tables and figures in the article
 <br>
 
   <details>
-  <summary>**figure_2.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>figure_2.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
   - <u>Description:</u> It reproduces Figure 2 of the article.
@@ -300,7 +300,7 @@ The scripts to be run to reproduce the metrics tables and figures in the article
 <br>
 
   <details>
-  <summary>**figure_3.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>figure_3.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
   - <u>Description:</u> It reproduces Figure 3 of the article.
