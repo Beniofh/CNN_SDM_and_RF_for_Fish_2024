@@ -100,7 +100,6 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 
   - <u>Inputs:</u> The data contained in `./inputs/data_Gbif`. The .csv file contains presence-only data (id of occurence, observation date, observed species, GPS coordinates, etc.). As stated in the paper, the presence-only data were divided into training, validation and test data sets using a random division into spatial blocks per ecoregion. The subset defined for each presence-only is shown in the .csv. Each subfolder corresponds to a type of environmental data. In each subfolder, a raster is associated with each presence-only, and the name of the raster begins with the ID of the associated presence-only.
   
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> It is a folder named according to the date and time the script is run (values after seconds are miliseconds) placed in `./outputs/cnn_sdm_presence_only subfolder`. This subfolder contains .png and .csv files that can be used to view the progress of the metrics during the training. There is also a .ckpt (checkpointing) file with the weights of the model associated with its best performance, a .log file with the architecture of the model and a .yaml file with the configuration used. Note that the script automatically replaces ‘auto’ values with calculated values and converts relative paths into absolute paths. This .yaml file shows the configuration after this automation step. To see the real original configuration, go to the `.hydra` subfolder and look at the `config.yaml` file.
   </div>
   </details>
@@ -153,7 +152,6 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 -outpus: of the same type as cnn_sdm_presence_only.py but located in `./outputs/cnn_sdm_abundance_without_tl`.
     - The file checkpoint-epoch=09-step=11400-val_accuracy=0.0804.ckpt containing the weights of the model trained to predict occurrences and used for transfer learning can be found in the folder `./inputs/outputs_cnn_sdm_presence_only/2023-10-06_16-38_085373`. This folder `2023-10-06_16-38_085373` is the output of cnn_sdm_presence_only.py which was used in the article. 
   
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> The same type as `cnn_sdm_presence_only.py` but located in `./outputs/cnn_sdm_abundance_with_tl`.
   </div>
   </details>
@@ -171,7 +169,6 @@ The scripts to be run to reproduce the experiments linked to the species distrib
     -The data contained in `./inputs/data_Gbif`, as `cnn_sdm_presence_only.py`.
     -The file `checkpoint-epoch=09-step=11400-val_accuracy=0.0804.ckpt` containing the weights of the model trained to predict occurrences can be found in the folder `./inputs/outputs_cnn_sdm_presence_only/2023-10-06_16-38_085373`. This folder `2023-10-06_16-38_085373` is the output of `cnn_sdm_presence_only.py` which was used in the article. 
   
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> The metic values are printed directly to the terminal.
   </div>
   </details>
@@ -190,7 +187,6 @@ The scripts to be run to reproduce the experiments linked to the species distrib
     - The data contained in `inputs/data_Gbif_for_debug`, as `cnn_sdm_presence_only_for_debug.py`
     - The file `checkpoint-epoch=00-step=1-val_accuracy=0.0667.ckpt` containing the weights of the model trained to predict occurrences can be found in the folder `./inputs/outputs_cnn_sdm_presence_only_for_debug/22024-11-06_12-30-28_624128`. This folder `2024-11-06_12-30-28_624128` is a output of cnn_sdm_presence_only_for_debug.py. 
 
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> The metic values are printed directly to the terminal.
   </div>
   </details>
@@ -209,7 +205,6 @@ The scripts to be run to reproduce the experiments linked to the species distrib
     - All the data contained in `inputs/data_Gbif`.
     -The folders in `./inputs/outputs_cnn_sdm_abundance_without_tl`. Each of these 20 folders is the output of `cnn_sdm_abundance_without_tl.py` for each of the 20 folds in the article. These are the data used in the article. In each folder, the configuration used to train the model is retrieved in the `./.hydra/config.yaml` file and the weights of the trained model in the .ckpt file. These folders are accompanied by a .dos metadata file indicating which fold of the article each folder corresponds to (this .ods file has been completed manually and is not used as input). 
 
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> The files in `./outputs/pred_cnn_sdm_abundance_without_tl`, 20 .csv files with predictions per site and 20 .csv files where the predictions are staked. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article.
   </div>
   </details>
@@ -225,7 +220,6 @@ The scripts to be run to reproduce the experiments linked to the species distrib
   
   - <u>Inputs:</u> As pred_cnn_sdm_abundance_without_tl.py but  in `./inputs/outputs_cnn_sdm_abundance_with_tl`.
   
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> As pred_cnn_sdm_abundance_without_tl.py but in `./outputs/pred_cnn_sdm_abundance_with_tl`.
   </div>
   </details>
@@ -243,7 +237,6 @@ The scripts to be run to reproduce the experiments linked to the species distrib
   
   - <u>Inputs:</u> The input data are .csv in `./inputs/data_RF_Gbif`. These are lists of occurrences with environmental data in one file and the split between training, validation and test subsets in the second. 
 
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> Top 1, 5, 10 and 20 micro and macro accuracy values for the train, validation and test set printed directly to the terminal.
   </div>
   </details>
@@ -259,7 +252,6 @@ The scripts to be run to reproduce the experiments linked to the species distrib
     - The file `Galaxy117-Sort_on_data_82_n_vec_value.csv` in `./inputs/data_RF_RSL` which contains the fish counts per site and the values of the environmental variables for each site.
     - The 20 .csv files in `./inputs/data_RLS`. These 20 .csv files contain the same information except for the subset (train, val, or test) associated with each count. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article.  
 
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> The files in `./outputs/pred_RF_abundace`, 20 .csv files with predictions per site and 20 .csv files where the predictions are staked. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article. For each fold, there is also the mean decrease in impurity and the permutation importances visible via .png files. Finally, there is the config.py file, which is a copy of the configuration used.
   </div>
   </details>
@@ -277,7 +269,6 @@ The scripts to be run to reproduce the metrics tables and figures in the article
   
   - <u>Inputs:</u> The set of .csv files in `./outputs/pred_cnn_sdm_abundance_with_tl`, `./outputs/pred_cnn_sdm_abundance_with_tl`, and `./outputs/pred_RF_abundace`. These correspond to the outputs of `pred_cnn_sdm_abundance_without_tl.py`,`pred_cnn_sdm_abundance_with_tl.py`, and `pred_RF_abundace.py` scripts respectively.
 
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> The `metric.csv` and `metric_by_sp.csv` files in `./outputs/abundances_results`. `metric.csv` shows the values of the metrics for each flod for the 3 models. `metric_by_sp.csv` shows the same thing but goes into more detail by giving the values for each species. 
   </div>
   </details>
@@ -291,7 +282,6 @@ The scripts to be run to reproduce the metrics tables and figures in the article
   
   - <u>Inputs:</u> The `mectric.csv` file in `./outputs/abundances_results/`. This file is one of the outputs of `metric.py`.
 
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> A .jpeg file with a name starting with `figure_2` in `./outputs/abundances_results`.
   </div>
   </details>
@@ -305,9 +295,7 @@ The scripts to be run to reproduce the metrics tables and figures in the article
   
   - <u>Inputs:</u> The `mectric.csv` file in `./outputs/abundances_results/` that is a output of `metric.py`. The file `Galaxy117-Sort_on_data_82_n.csv` in `./inputs/data_RF_RSL` which contains the fish counts per site.
 
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> A .jpeg file with a name starting with `figure_3` in `./outputs/abundances_results`.
-  
   </div>
   </details>
 <br>
