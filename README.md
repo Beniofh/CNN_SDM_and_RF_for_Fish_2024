@@ -7,7 +7,7 @@ Benjamin Bourel<sup>1*</sup>, Alexis Joly<sup>1</sup>, Maximilien Servajean<sup>
 3 AMIS, Paule Valery University, Montpellier, France<br>
 4 MARBEC, University of Montpellier, CNRS, IFREMER, IRD, Montpellier, France<br>
 5 CRETUS - Department of Zoology, Genetics and Physical Anthropology, University of Santiago de Compostela, Santiago de Compostela, Spain<br>
-* Corresponding author: benjamin.bourel@inria.fr
+\* Corresponding author: benjamin.bourel@inria.fr
 
 <span style="color:green">
 **DOI of paper** : XXXXXXXXXXXXX<br>
