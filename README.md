@@ -116,7 +116,6 @@ The scripts to be run to reproduce the experiments linked to the species distrib
   
   - <u>Inputs:</u> The data in `inputs/data_Gbif_for_debug`. Inputs are organised as for `cnn_sdm_presence_only.py`.
 
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> The same type as `cnn_sdm_presence_only.py` but located in `./outputs/cnn_sdm_presence_only_for_debug`.
   </div>
   </details>
@@ -134,7 +133,6 @@ The scripts to be run to reproduce the experiments linked to the species distrib
     - The data for training the model to predict fish abundance values are in the `./inputs/data_RLS folder` and are organised as for cnn_sdm_abundance_without_tl.py. The only difference is that there is not one but 20 .csv files. These 20 .csv files contain the same information except for the subset (train, val, or test) associated with each count. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article
     - The data used to retrieve information about the data used to train the occurrence model in order to adapt the new model is found in `./inputs/data_Gbif`.  This includes the .csv file and the 15 rasters (one in each subfolder) associated with occurrence no. 3853246815.
     
-  <div style="margin-top:10px;">
   - <u>Outpus:</u> The same type as cnn_sdm_presence_only.py but located in `./outputs/cnn_sdm_abundance_without_tl`. 
   </div>
   </details>
@@ -199,7 +197,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
  <br>
 
   <details>
-  <summary>**pred_cnn_sdm_abundance_without_tl.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>pred_cnn_sdm_abundance_without_tl.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
   
   - <u>Description:</u> It uses a CNN-SDM trained, with `cnn_sdm_abundance_without_tl.py`, to predict abundance without transfer learning to predict the abundance of 47 poission species for each site. 
@@ -252,7 +250,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
 
   <details>
-  <summary>**pred_RF_abundace.py** (<i>Click here to expand description</i>)</summary>
+  <summary> <b>pred_RF_abundace.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
   - <u>Description:</u> It is used to train RF models for predicting species abundance based on 406 fish counts representing 47 species. The count data comes from the database of the Reef Life Survey program carried out in the Mediterranean Sea between 2011 and 2020. RFs cannot deal directly with the rasterised environmental data as the CNN-SDM does (this leads to strong over-fitting). To solve this problem, we use the mean of the pixels and the standard deviation of each raster used with sdm_abundance_without_tl.py. This script does this 20 times, once for each fold in the article.
