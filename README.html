@@ -352,10 +352,6 @@ display: none;
 </div>
 
 
-<div id="it-is-currently-being-finalised-and-will-be-available-on-14112024." class="section level1">
-<h1><strong>It is currently being finalised and will be available on
-14/11/2024.</strong></h1>
-</div>
 <div id="data-and-code-for-the-scientific-paper-from-presence-only-to-abundance-species-distribution-models-using-transfer-learning" class="section level1">
 <h1><strong>Data and code for the scientific paper: “From presence-only
 to abundance species distribution models using transfer
@@ -370,7 +366,7 @@ MARBEC, University of Montpellier, CNRS, IFREMER, IRD, Montpellier,
 France<br> 5 CRETUS - Department of Zoology, Genetics and Physical
 Anthropology, University of Santiago de Compostela, Santiago de
 Compostela, Spain<br> * Corresponding author: <a href="mailto:benjamin.bourel@inria.fr" class="email">benjamin.bourel@inria.fr</a></p>
-<p><span style="color:green"><strong>DOI of paper</strong> :
+<p><span style="color:green"> <strong>DOI of paper</strong> :
 XXXXXXXXXXXXX<br> <strong>State of paper</strong> : Submitted to Ecology
 Letter as Method paper </span> <br><br><br></p>
 <div id="i.-aim-of-this-githug-repository" class="section level2">
@@ -381,9 +377,10 @@ distribution models (SDM). More specifically, these experiments use SDMs
 based on Convolutional Neural Networks (CNN-SDMs) and SDMs based on
 Random Forest (RF). These codes have been designed and tested under
 Linux. Their compatibility with Window via software such as Anaconda is
-not guaranteed. <span style="color:red">These codes have been designed
-and tested under Linux (Ubuntu 22.04). Their compatibility with Window
-via software such as Anaconda is not guaranteed.</span> <br><br></p>
+not guaranteed.</p>
+<p>⚠️ These codes have been designed and tested under Linux (Ubuntu
+22.04). Their compatibility with Window via software such as Anaconda is
+not guaranteed. <br><br></p>
 </div>
 <div id="ii.-installation" class="section level2">
 <h2><strong>II. Installation</strong></h2>
@@ -428,11 +425,11 @@ Number of CUDA-compatible devices found: 1</code></pre>
 </div>
 <div id="ii.3.-downloading-data" class="section level3">
 <h3><strong>II.3. Downloading data</strong></h3>
-<p><span style="color:green">The input and output data used in our
+<p><span style="color:green"> The input and output data used in our
 article and needed to run the scripts are not directly on the GitHub
-repository because they are too large. This data is available here. They
-should be available in Inria (National Institute for Research in Digital
-Science and Technology) open data repository in the near future.
+repository because they are too large. This data is available <a href="https://lab.plantnet.org/seafile/d/387e43c4f1ae495c96ba/"><code>here</code></a>.
+They should be available in Inria (National Institute for Research in
+Digital Science and Technology) open data repository in the near future.
 </span></p>
 <p>The downloadable data consists of three .zip files :<br></p>
 <ul>
@@ -453,9 +450,9 @@ Go) contains additional input data in order to run the scripts
 be run on standard machines. These are scripts that require a lot of
 computing resources and which must run on supercomputers. These
 additional data are all environmental rasters associated with the
-presence of fish. <span style="color:red">If you cannot or do not want
-to run these two scripts, you do not need to download
-<code>complementary_inputs.zip</code>.</span></p></li>
+presence of fish. ⚠️ If you cannot or do not want to run these two
+scripts, you do not need to download
+<code>complementary_inputs.zip</code>.</p></li>
 </ul>
 </div>
 <div id="ii.4.-finalising-the-installation" class="section level3">
@@ -528,44 +525,43 @@ file, the scripts will perform different tasks. Finally, the scripts
 <code>pred_cnn_sdm_abundance_with_tl.py</code> and
 <code>pred_cnn_sdm_abundance_without_tl.py</code> are identical except
 for the parameters fold_dir_path and fold_id parameters. All the scripts
-are described below.</p>
+are described below. <br></p>
+<details>
+<summary>
+<strong>cnn_sdm_presence_only.py</strong> (<i> Click here to expand
+description</i>)
+</summary>
+<div style="margin-top:10px;">
+
 <ul>
-<li><h4 id="cnn_sdm_presence_only.py"><strong>cnn_sdm_presence_only.py</strong></h4>
-<ul>
-<li><ins>
-Description:
-</ins>
-It trains a CNN-SDM to predict the occurrences of 181 fish species based
-on 62,241 presence-only from Gbif. For each occurrence of fish, the
-corresponding environmental dataset is made up of 15 rasters
-representing 14 environmental covariates and a satellite image. Each
-raster is spatially centred on the GPS position of the associated
-occurrence. <span style="color:red">This script requires optional data
-to be downloaded (see part II.3). Running this script requires a lot of
+<li><p><u>Description:</u> It trains a CNN-SDM to predict the
+occurrences of 181 fish species based on 62,241 presence-only from Gbif.
+For each occurrence of fish, the corresponding environmental dataset is
+made up of 15 rasters representing 14 environmental covariates and a
+satellite image. Each raster is spatially centred on the GPS position of
+the associated occurrence. ⚠️ This script requires optional data to be
+downloaded (see part II.3). Running this script requires a lot of
 resources. It is recommended that you run it on a supercomputer, as it
-will not work on a personal machine.</span></li>
-<li><ins>
-Configuration file:
-</ins>
-<code>cnn_sdm_presence_only.yaml</code></li>
-<li><ins>
-Inputs:
-</ins>
-The data contained in <code>inputs/data_Gbif</code>. The .csv file
-contains presence-only data (id of occurence, observation date, observed
-species, GPS coordinates, etc.). As stated in the paper, the
-presence-only data were divided into training, validation and test data
-sets using a random division into spatial blocks per ecoregion. The
-subset defined for each presence-only is shown in the .csv. Each
-subfolder corresponds to a type of environmental data. In each
-subfolder, a raster is associated with each presence-only, and the name
-of the raster begins with the ID of the associated presence-only.</li>
-<li><ins>
-Outpus:
-</ins>
-It is a folder named according to the date and time the script is run
-(values after seconds are miliseconds) placed in
-<code>outputs/cnn_sdm_presence_only subfolder</code>. This subfolder
+will not work on a personal machine.<br />
+</p></li>
+<li><p><u>Configuration file:</u>
+<code>cnn_sdm_presence_only.yaml</code></p></li>
+<li><p><u>Inputs:</u> The data contained in
+<code>./inputs/data_Gbif</code>. The .csv file contains presence-only
+data (id of occurence, observation date, observed species, GPS
+coordinates, etc.). As stated in the paper, the presence-only data were
+divided into training, validation and test data sets using a random
+division into spatial blocks per ecoregion. The subset defined for each
+presence-only is shown in the .csv. Each subfolder corresponds to a type
+of environmental data. In each subfolder, a raster is associated with
+each presence-only, and the name of the raster begins with the ID of the
+associated presence-only.</p></li>
+</ul>
+<div style="margin-top:10px;">
+<ul>
+<li><u>Outpus:</u> It is a folder named according to the date and time
+the script is run (values after seconds are miliseconds) placed in
+<code>./outputs/cnn_sdm_presence_only subfolder</code>. This subfolder
 contains .png and .csv files that can be used to view the progress of
 the metrics during the training. There is also a .ckpt (checkpointing)
 file with the weights of the model associated with its best performance,
@@ -575,49 +571,60 @@ values with calculated values and converts relative paths into absolute
 paths. This .yaml file shows the configuration after this automation
 step. To see the real original configuration, go to the
 <code>.hydra</code> subfolder and look at the <code>config.yaml</code>
-file.</li>
-</ul></li>
-<li><h4 id="cnn_sdm_presence_only_for_debug.py"><strong>cnn_sdm_presence_only_for_debug.py</strong></h4>
+file.
+</div>
+</details>
+<br></li>
+</ul>
+<details>
+<summary>
+<strong>cnn_sdm_presence_only_for_debug.py</strong> (<i>Click here to
+expand description</i>)
+</summary>
+<div style="margin-top:10px;">
+
 <ul>
-<li><ins>
-Description:
-</ins>
-It does the same thing as the cnn_sdm_presence_only.py script except
-that it uses a very reduced version of the Gbif dataset (96 presence of
-only 32 fish species). This dataset is not sufficient to obtain suitable
-results, but it allows you to see how the cnn_sdm_presence_only.py
-script works without needing a supercomputer.</li>
-<li><ins>
-Configuration file:
-</ins>
+<li><p><u>Description:</u> It does the same thing as the
+cnn_sdm_presence_only.py script except that it uses a very reduced
+version of the Gbif dataset (96 presence of only 32 fish species). This
+dataset is not sufficient to obtain suitable results, but it allows you
+to see how the cnn_sdm_presence_only.py script works without needing a
+supercomputer.</p></li>
+<li><p><u>Configuration file:</u>
 <code>cnn_sdm_presence_only_for_debug.yaml</code>. This is the same as
 <code>cnn_sdm_presence_only.yaml</code> but the path names
-data.dataset_path and data.csv_occurence_path have been changed.</li>
-<li><ins>
-Inputs:
-</ins>
-The data in <code>inputs/data_Gbif_for_debug</code>. Inputs are
-organised as for <code>cnn_sdm_presence_only.py</code>.</li>
-<li><ins>
-Outpus:
-</ins>
-The same type as <code>cnn_sdm_presence_only.py</code> but located in
-<code>outputs/cnn_sdm_presence_only_for_debug</code>.</li>
-</ul></li>
-<li><h4 id="cnn_sdm_abundance_without_tl.py"><strong>cnn_sdm_abundance_without_tl.py</strong></h4>
+data.dataset_path and data.csv_occurence_path have been
+changed.</p></li>
+<li><p><u>Inputs:</u> The data in
+<code>inputs/data_Gbif_for_debug</code>. Inputs are organised as for
+<code>cnn_sdm_presence_only.py</code>.</p></li>
+</ul>
+<div style="margin-top:10px;">
 <ul>
-<li><ins>
-Description:
-</ins>
-It is used to train a CNN-SDM for predicting species abundance based on
-406 fish counts representing 47 species. The count data comes from the
-database of the Reef Life Survey program carried out in the
-Mediterranean Sea between 2011 and 2020. For each fish count, the
-corresponding environmental dataset is made up of 15 rasters
-representing 14 environmental covariates and a satellite image (the same
-as for occurrence models). Each raster is spatially centred on the GPS
-position of the associated fish count. As stated in the article, the
-results of CNN-SDMs for fish abundances are based on a k-fold
+<li><u>Outpus:</u> The same type as
+<code>cnn_sdm_presence_only.py</code> but located in
+<code>./outputs/cnn_sdm_presence_only_for_debug</code>.
+</div>
+</details>
+<br></li>
+</ul>
+<details>
+<summary>
+<strong>cnn_sdm_abundance_without_tl.py</strong> (<i>Click here to
+expand description</i>)
+</summary>
+<div style="margin-top:10px;">
+
+<ul>
+<li><p><u>Description:</u> It is used to train a CNN-SDM for predicting
+species abundance based on 406 fish counts representing 47 species. The
+count data comes from the database of the Reef Life Survey program
+carried out in the Mediterranean Sea between 2011 and 2020. For each
+fish count, the corresponding environmental dataset is made up of 15
+rasters representing 14 environmental covariates and a satellite image
+(the same as for occurrence models). Each raster is spatially centred on
+the GPS position of the associated fish count. As stated in the article,
+the results of CNN-SDMs for fish abundances are based on a k-fold
 cross-validation, using k=20 random spatial block splits from the
 dataset of fish abundances. The default setting for this script is to
 reproduce the results for flod n°0. You can run the script for the other
@@ -626,23 +633,18 @@ folds by modifying the
 configuration file. For example, to reproduce the results for fold 12,
 replace ../inputs/data_RLS/Galaxy117-Sort_on_data_82_n_vec_subset_0.csv
 with
-../inputs/data_RLS/Galaxy117-Sort_on_data_82_n_vec_subset_12.csv.</li>
-<li><ins>
-Configuration file:
-</ins>
+../inputs/data_RLS/Galaxy117-Sort_on_data_82_n_vec_subset_12.csv.</p></li>
+<li><p><u>Configuration file:</u>
 <code>cnn_sdm_abundance_without_tl.yaml</code>. This is the same as
 cnn_sdm_presence_only.yaml but with
 transfer_learning.transfer_learning_activated = True. This allows the
 model to be trained to predict abundance but without recovering the
 weight of the pre-trained model based on presence-only, because
-transfer_learning.load_checkpoint = False.</li>
-<li><ins>
-Inputs:
-</ins>
-The input data can be found in two folders.
+transfer_learning.load_checkpoint = False.</p></li>
+<li><p><u>Inputs:</u> The input data can be found in two folders.</p>
 <ul>
 <li>The data for training the model to predict fish abundance values are
-in the <code>inputs/data_RLS folder</code> and are organised as for
+in the <code>./inputs/data_RLS folder</code> and are organised as for
 cnn_sdm_abundance_without_tl.py. The only difference is that there is
 not one but 20 .csv files. These 20 .csv files contain the same
 information except for the subset (train, val, or test) associated with
@@ -650,38 +652,40 @@ each count. These 20 .csv files are numbered from 0 to 19 and correspond
 respectively to the flods 0 to 19 mentioned in the article</li>
 <li>The data used to retrieve information about the data used to train
 the occurrence model in order to adapt the new model is found in
-<code>inputs/data_Gbif</code>. This includes the .csv file and the 15
+<code>./inputs/data_Gbif</code>. This includes the .csv file and the 15
 rasters (one in each subfolder) associated with occurrence no.
 3853246815.</li>
 </ul></li>
-<li><ins>
-Outpus:
-</ins>
-The same type as cnn_sdm_presence_only.py but located in
-<code>outputs/cnn_sdm_abundance_without_tl</code>.</li>
-</ul></li>
-<li><h4 id="cnn_sdm_abundance_with_tl.py"><strong>cnn_sdm_abundance_with_tl.py</strong></h4>
+</ul>
+<div style="margin-top:10px;">
 <ul>
-<li><ins>
-Description:
-</ins>
-As for <code>cnn_sdm_abundance_without_tl.py</code>, but applying
-transfer learning from a model trained on presence data only with the
-script <code>cnn_sdm_presence_only.py</code>.</li>
-<li><ins>
-Configuration file:
-</ins>
+<li><u>Outpus:</u> The same type as cnn_sdm_presence_only.py but located
+in <code>./outputs/cnn_sdm_abundance_without_tl</code>.
+</div>
+</details>
+<br></li>
+</ul>
+<details>
+<summary>
+<strong>cnn_sdm_abundance_with_tl.py</strong> (<i>Click here to expand
+description</i>)
+</summary>
+<div style="margin-top:10px;">
+
+<ul>
+<li><p><u>Description:</u> As for
+<code>cnn_sdm_abundance_without_tl.py</code>, but applying transfer
+learning from a model trained on presence data only with the script
+<code>cnn_sdm_presence_only.py</code>.</p></li>
+<li><p><u>Configuration file:</u>
 <code>cnn_sdm_abundance_with_tl.yaml</code>. This is the same as
 <code>cnn_sdm_presence_only.yaml</code> but with
 transfer_learning.transfer_learning_activated = True and
-transfer_learning.load_checkpoint = True.</li>
-<li><ins>
-Inputs:
-</ins>
-The input data can be found in three folders.
+transfer_learning.load_checkpoint = True.</p></li>
+<li><p><u>Inputs:</u> The input data can be found in three folders.</p>
 <ul>
 <li>The data for training the model to predict fish abundance values are
-in the <code>inputs/data_RLS folder and are organised</code> as for
+in the <code>./inputs/data_RLS folder and are organised</code> as for
 cnn_sdm_abundance_without_tl.py. The only difference is that there is
 not one but 20 .csv files. These 20 .csv files contain the same
 information except for the subset (train, val, or test) associated with
@@ -689,77 +693,81 @@ each count. These 20 .csv files are numbered from 0 to 19 and correspond
 respectively to the flods 0 to 19 mentioned in the article.</li>
 <li>The data used to retrieve information about the data used to train
 the occurrence model in order to adapt the new model is found in
-<code>inputs/data_Gbif.</code> This includes the .csv file and the 15
+<code>./inputs/data_Gbif.</code> This includes the .csv file and the 15
 rasters (one in each subfolder) associated with occurrence no.
 3853246815. -outpus: of the same type as cnn_sdm_presence_only.py but
-located in <code>outputs/cnn_sdm_abundance_without_tl</code>.</li>
+located in <code>./outputs/cnn_sdm_abundance_without_tl</code>.</li>
 <li>The file checkpoint-epoch=09-step=11400-val_accuracy=0.0804.ckpt
 containing the weights of the model trained to predict occurrences and
 used for transfer learning can be found in the folder
-<code>inputs/outputs_cnn_sdm_presence_only/2023-10-06_16-38_085373</code>.
+<code>./inputs/outputs_cnn_sdm_presence_only/2023-10-06_16-38_085373</code>.
 This folder <code>2023-10-06_16-38_085373</code> is the output of
 cnn_sdm_presence_only.py which was used in the article.</li>
 </ul></li>
-<li><ins>
-Outpus:
-</ins>
-The same type as <code>cnn_sdm_presence_only.py</code> but located in
-<code>outputs/cnn_sdm_abundance_with_tl</code>.</li>
-</ul></li>
-<li><h4 id="pred_cnn_sdm_presence_only.py"><strong>pred_cnn_sdm_presence_only.py</strong></h4>
+</ul>
+<div style="margin-top:10px;">
 <ul>
-<li><ins>
-Description :
-</ins>
-It is used to calculate the metic values for the validation and test
-sets for a CNN-SDM trained in presence-only with
-cnn_sdm_presence_only.py. <span style="color:red">This script requires
-optional data to be downloaded (see part II.3). Running this script
-requires a lot of resources. It is recommended that you run it on a
-supercomputer, as it will not work on a personal machine.</span></li>
-<li><ins>
-Configuration file:
-</ins>
-<code>pred_cnn_sdm_presence_only.yaml</code>. This is the same as
+<li><u>Outpus:</u> The same type as
+<code>cnn_sdm_presence_only.py</code> but located in
+<code>./outputs/cnn_sdm_abundance_with_tl</code>.
+</div>
+</details>
+<br></li>
+</ul>
+<details>
+<summary>
+<strong>pred_cnn_sdm_presence_only.py</strong> (<i>Click here to expand
+description</i>)
+</summary>
+<div style="margin-top:10px;">
+
+<ul>
+<li><p><u>Description:</u> It is used to calculate the metic values for
+the validation and test sets for a CNN-SDM trained in presence-only with
+cnn_sdm_presence_only.py. ⚠️This script requires optional data to be
+downloaded (see part II.3). Running this script requires a lot of
+resources. It is recommended that you run it on a supercomputer, as it
+will not work on a personal machine.</p></li>
+<li><p><u>Configuration file:
+</u><code>pred_cnn_sdm_presence_only.yaml</code>. This is the same as
 <code>cnn_sdm_presence_only.yaml</code> but with
-visualization.validate_metric = True.</li>
-<li><ins>
-Inputs:
-</ins>
-The input data can be found in two folders. -The data contained in
-<code>inputs/data_Gbif</code>, as <code>cnn_sdm_presence_only.py</code>.
--The file
+visualization.validate_metric = True.</p></li>
+<li><p><u>Inputs:</u> The input data can be found in two folders. -The
+data contained in <code>./inputs/data_Gbif</code>, as
+<code>cnn_sdm_presence_only.py</code>. -The file
 <code>checkpoint-epoch=09-step=11400-val_accuracy=0.0804.ckpt</code>
 containing the weights of the model trained to predict occurrences can
 be found in the folder
-<code>inputs/outputs_cnn_sdm_presence_only/2023-10-06_16-38_085373</code>.
+<code>./inputs/outputs_cnn_sdm_presence_only/2023-10-06_16-38_085373</code>.
 This folder <code>2023-10-06_16-38_085373</code> is the output of
 <code>cnn_sdm_presence_only.py</code> which was used in the
-article.</li>
-<li><ins>
-Outpus:
-</ins>
-The metic values are printed directly to the terminal.</li>
-</ul></li>
-<li><h4 id="pred_cnn_sdm_presence_only_for_debug.py"><strong>pred_cnn_sdm_presence_only_for_debug.py</strong></h4>
+article.</p></li>
+</ul>
+<div style="margin-top:10px;">
 <ul>
-<li><ins>
-Description:
-</ins>
-It is used to calculate the metic values for the validation and test
-sets for a CNN-SDM trained in presence-only with
-<code>cnn_sdm_presence_only_for_debug.py</code>.</li>
-<li><ins>
-Configuration file:
-</ins>
-<code>pred_cnn_sdm_presence_only.yaml</code>. This is the same as
-cnn_sdm_presence_only.yaml but with visualization.validate_metric = True
-and the value of visualization.chk_path_validate_metric has been
-modified.</li>
-<li><ins>
-Inputs:
-</ins>
-The input data can be found in two folders.
+<li><u>Outpus:</u> The metic values are printed directly to the
+terminal.
+</div>
+</details>
+<br></li>
+</ul>
+<details>
+<summary>
+<strong>pred_cnn_sdm_presence_only_for_debug.py</strong> (<i>Click here
+to expand description</i>)
+</summary>
+<div style="margin-top:10px;">
+
+<ul>
+<li><p><u>Description:</u> It is used to calculate the metic values for
+the validation and test sets for a CNN-SDM trained in presence-only with
+<code>cnn_sdm_presence_only_for_debug.py</code>.</p></li>
+<li><p><u>Configuration
+file:</u><code>pred_cnn_sdm_presence_only.yaml</code>. This is the same
+as cnn_sdm_presence_only.yaml but with visualization.validate_metric =
+True and the value of visualization.chk_path_validate_metric has been
+modified.</p></li>
+<li><p><u>Inputs:</u> The input data can be found in two folders.</p>
 <ul>
 <li>The data contained in <code>inputs/data_Gbif_for_debug</code>, as
 <code>cnn_sdm_presence_only_for_debug.py</code></li>
@@ -767,85 +775,89 @@ The input data can be found in two folders.
 <code>checkpoint-epoch=00-step=1-val_accuracy=0.0667.ckpt</code>
 containing the weights of the model trained to predict occurrences can
 be found in the folder
-<code>inputs/outputs_cnn_sdm_presence_only_for_debug/22024-11-06_12-30-28_624128</code>.
+<code>./inputs/outputs_cnn_sdm_presence_only_for_debug/22024-11-06_12-30-28_624128</code>.
 This folder <code>2024-11-06_12-30-28_624128</code> is a output of
 cnn_sdm_presence_only_for_debug.py.</li>
 </ul></li>
-<li><ins>
-Outpus:
-</ins>
-The metic values are printed directly to the terminal.</li>
-</ul></li>
-<li><h4 id="pred_cnn_sdm_abundance_without_tl.py"><strong>pred_cnn_sdm_abundance_without_tl.py</strong></h4>
+</ul>
+<div style="margin-top:10px;">
 <ul>
-<li><ins>
-Description:
-</ins>
-It uses a CNN-SDM trained, with
+<li><u>Outpus:</u> The metic values are printed directly to the
+terminal.
+</div>
+</details>
+<br></li>
+</ul>
+<details>
+<summary>
+<strong>pred_cnn_sdm_abundance_without_tl.py</strong> (<i>Click here to
+expand description</i>)
+</summary>
+<div style="margin-top:10px;">
+
+<ul>
+<li><p><u>Description:</u> It uses a CNN-SDM trained, with
 <code>cnn_sdm_abundance_without_tl.py</code>, to predict abundance
 without transfer learning to predict the abundance of 47 poission
-species for each site.</li>
-<li><ins>
-Configuration file:
-</ins>
-<code>pred_cnn_sdm_abundance.yaml</code>. This configuration file only
-specifies the location for the outputs. The script directly retrieves
-the configurations saved in the output folders of
+species for each site.</p></li>
+<li><p><u>Configuration
+file:</u><code>pred_cnn_sdm_abundance.yaml</code>. This configuration
+file only specifies the location for the outputs. The script directly
+retrieves the configurations saved in the output folders of
 <code>cnn_sdm_abundance_without_tl.py</code> in
-<code>.hydra/config.yaml</code>.</li>
-<li><ins>
-Inputs:
-</ins>
-The input data can be found in two folders.
+<code>.hydra/config.yaml</code>.</p></li>
+<li><p><u>Inputs:</u> The input data can be found in two folders.</p>
 <ul>
 <li>The data contained in <code>inputs/data_RLS</code>, as
 <code>cnn_sdm_abundance_without_tl.py</code>.</li>
 <li>All the data contained in <code>inputs/data_Gbif</code>. -The
-folders in <code>inputs/outputs_cnn_sdm_abundance_without_tl</code>.
+folders in <code>./inputs/outputs_cnn_sdm_abundance_without_tl</code>.
 Each of these 20 folders is the output of
 <code>cnn_sdm_abundance_without_tl.py</code> for each of the 20 folds in
 the article. These are the data used in the article. In each folder, the
 configuration used to train the model is retrieved in the
-<code>.hydra/config.yaml</code> file and the weights of the trained
+<code>./.hydra/config.yaml</code> file and the weights of the trained
 model in the .ckpt file. These folders are accompanied by a .dos
 metadata file indicating which fold of the article each folder
 corresponds to (this .ods file has been completed manually and is not
 used as input).</li>
 </ul></li>
-<li><ins>
-Outpus:
-</ins>
-The files in <code>outputs/pred_cnn_sdm_abundance_without_tl</code>, 20
-.csv files with predictions per site and 20 .csv files where the
-predictions are staked. These 20 .csv files are numbered from 0 to 19
-and correspond respectively to the flods 0 to 19 mentioned in the
-article.</li>
-</ul></li>
-<li><h4 id="pred_cnn_sdm_abundance_with_tl.py"><strong>pred_cnn_sdm_abundance_with_tl.py</strong></h4>
+</ul>
+<div style="margin-top:10px;">
 <ul>
-<li><ins>
-Description:
-</ins>
-It uses a CNN-SDM trained, with
+<li><u>Outpus:</u> The files in
+<code>./outputs/pred_cnn_sdm_abundance_without_tl</code>, 20 .csv files
+with predictions per site and 20 .csv files where the predictions are
+staked. These 20 .csv files are numbered from 0 to 19 and correspond
+respectively to the flods 0 to 19 mentioned in the article.
+</div>
+</details>
+<br></li>
+</ul>
+<details>
+<summary>
+<strong>pred_cnn_sdm_abundance_with_tl.py</strong> (<i>Click here to
+expand description</i>)
+</summary>
+<div style="margin-top:10px;">
+
+<ul>
+<li><p><u>Description:</u> It uses a CNN-SDM trained, with
 <code>cnn_sdm_abundance_without_tl.py</code>, to predict abundance with
 transfer learning to predict the abundance of 47 poission species for
-each site.</li>
-<li><ins>
-Configuration file:
-</ins>
-As <code>pred_cnn_sdm_abundance_without_tl.py</code>.<br />
-</li>
-<li><ins>
-Inputs:
-</ins>
-As pred_cnn_sdm_abundance_without_tl.py but in
-<code>inputs/outputs_cnn_sdm_abundance_with_tl</code>.</li>
-<li><ins>
-Outpus:
-</ins>
-As pred_cnn_sdm_abundance_without_tl.py but in
-<code>outputs/pred_cnn_sdm_abundance_with_tl</code>.</li>
-</ul></li>
+each site.</p></li>
+<li><p><u>Configuration file:</u> As
+<code>pred_cnn_sdm_abundance_without_tl.py</code>.</p></li>
+<li><p><u>Inputs:</u> As pred_cnn_sdm_abundance_without_tl.py but in
+<code>./inputs/outputs_cnn_sdm_abundance_with_tl</code>.</p></li>
+</ul>
+<div style="margin-top:10px;">
+<ul>
+<li><u>Outpus:</u> As pred_cnn_sdm_abundance_without_tl.py but in
+<code>./outputs/pred_cnn_sdm_abundance_with_tl</code>.
+</div>
+</details>
+<br></li>
 </ul>
 </div>
 <div id="iii.3.-the-scripts-to-be-run-to-reproduce-the-deep-learning-experiments-in-the-articles" class="section level3">
@@ -854,73 +866,78 @@ experiments in the articles</strong></h3>
 <p>The scripts to be run to reproduce the experiments linked to the
 species distribution models (SDMs) based on Random Forest (RF) are the
 scripts at the root of the <code>scr_no_deep_learning_models</code>
-folder. All the scripts are described below.</p>
+folder. All the scripts are described below. <br></p>
+<details>
+<summary>
+<strong>pred_RF_presence-only.py</strong> (<i>Click here to expand
+description</i>)
+</summary>
+<div style="margin-top:10px;">
+
 <ul>
-<li><h4 id="pred_rf_presence-only.py"><strong>pred_RF_presence-only.py</strong></h4>
+<li><p><u>Description:</u> It trains a CNN-SDM to predict the
+occurrences of 181 fish species based on 62,241 presence-only from Gbif.
+For each occurrence of fish, the corresponding environmental dataset is
+made up of 15 rasters representing 14 environmental covariates and a
+satellite image. RFs cannot deal directly with the rasterised
+environmental data as the CNN-SDM does (this leads to strong
+over-fitting). To solve this problem, we use the mean of the pixels and
+the standard deviation of each raster used with
+sdm_abundance_presence_only.py.</p></li>
+<li><p><u>Inputs:</u> The input data are .csv in
+<code>./inputs/data_RF_Gbif</code>. These are lists of occurrences with
+environmental data in one file and the split between training,
+validation and test subsets in the second.</p></li>
+</ul>
+<div style="margin-top:10px;">
 <ul>
-<li><ins>
-Description:
-</ins>
-It trains a CNN-SDM to predict the occurrences of 181 fish species based
-on 62,241 presence-only from Gbif. For each occurrence of fish, the
-corresponding environmental dataset is made up of 15 rasters
-representing 14 environmental covariates and a satellite image. RFs
-cannot deal directly with the rasterised environmental data as the
-CNN-SDM does (this leads to strong over-fitting). To solve this problem,
-we use the mean of the pixels and the standard deviation of each raster
-used with sdm_abundance_presence_only.py.</li>
-<li><ins>
-Inputs:
-</ins>
-The input data are .csv in <code>inputs/data_RF_Gbif</code>. These are
-lists of occurrences with environmental data in one file and the split
-between training, validation and test subsets in the second.</li>
-<li><ins>
-Outpus:
-</ins>
-Top 1, 5, 10 and 20 micro and macro accuracy values for the train,
-validation and test set printed directly to the terminal.</li>
-</ul></li>
-<li><h4 id="pred_rf_abundace.py"><strong>pred_RF_abundace.py</strong></h4>
+<li><u>Outpus:</u> Top 1, 5, 10 and 20 micro and macro accuracy values
+for the train, validation and test set printed directly to the terminal.
+</div>
+</details>
+<br></li>
+</ul>
+<details>
+<summary>
+<strong>pred_RF_abundace.py</strong> (<i>Click here to expand
+description</i>)
+</summary>
+<div style="margin-top:10px;">
+
 <ul>
-<li><ins>
-Description:
-</ins>
-It is used to train RF models for predicting species abundance based on
-406 fish counts representing 47 species. The count data comes from the
-database of the Reef Life Survey program carried out in the
-Mediterranean Sea between 2011 and 2020. RFs cannot deal directly with
-the rasterised environmental data as the CNN-SDM does (this leads to
-strong over-fitting). To solve this problem, we use the mean of the
-pixels and the standard deviation of each raster used with
+<li><p><u>Description:</u> It is used to train RF models for predicting
+species abundance based on 406 fish counts representing 47 species. The
+count data comes from the database of the Reef Life Survey program
+carried out in the Mediterranean Sea between 2011 and 2020. RFs cannot
+deal directly with the rasterised environmental data as the CNN-SDM does
+(this leads to strong over-fitting). To solve this problem, we use the
+mean of the pixels and the standard deviation of each raster used with
 sdm_abundance_without_tl.py. This script does this 20 times, once for
-each fold in the article.</li>
-<li><ins>
-Inputs:
-</ins>
-The input data can be found in two folders.
+each fold in the article.</p></li>
+<li><p><u>Inputs:</u> The input data can be found in two folders.</p>
 <ul>
 <li>The file <code>Galaxy117-Sort_on_data_82_n_vec_value.csv</code> in
-<code>inputs/data_RF_RSL</code> which contains the fish counts per site
-and the values of the environmental variables for each site.</li>
-<li>The 20 .csv files in <code>inputs/data_RLS</code>. These 20 .csv
+<code>./inputs/data_RF_RSL</code> which contains the fish counts per
+site and the values of the environmental variables for each site.</li>
+<li>The 20 .csv files in <code>./inputs/data_RLS</code>. These 20 .csv
 files contain the same information except for the subset (train, val, or
 test) associated with each count. These 20 .csv files are numbered from
 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in
-the article.<br />
-</li>
+the article.</li>
 </ul></li>
-<li><ins>
-Outpus:
-</ins>
-The files in <code>outputs/pred_RF_abundace</code>, 20 .csv files with
-predictions per site and 20 .csv files where the predictions are staked.
-These 20 .csv files are numbered from 0 to 19 and correspond
-respectively to the flods 0 to 19 mentioned in the article. For each
-fold, there is also the mean decrease in impurity and the permutation
-importances visible via .png files. Finally, there is the config.py
-file, which is a copy of the configuration used.</li>
-</ul></li>
+</ul>
+<div style="margin-top:10px;">
+<ul>
+<li><u>Outpus:</u> The files in <code>./outputs/pred_RF_abundace</code>,
+20 .csv files with predictions per site and 20 .csv files where the
+predictions are staked. These 20 .csv files are numbered from 0 to 19
+and correspond respectively to the flods 0 to 19 mentioned in the
+article. For each fold, there is also the mean decrease in impurity and
+the permutation importances visible via .png files. Finally, there is
+the config.py file, which is a copy of the configuration used.
+</div>
+</details>
+<br></li>
 </ul>
 </div>
 <div id="iii.4.-the-scripts-to-be-run-to-reproduce-tables-and-figures" class="section level3">
@@ -929,47 +946,86 @@ figures</strong></h3>
 <p>The scripts to be run to reproduce the metrics tables and figures in
 the article linked to SDMs are the scripts at the root of the
 <code>scr_metrics_and_figures</code> folder.. All the scripts are
-described below.</p>
+described below. <br></p>
+<details>
+<summary>
+<strong>metric.py</strong> (<i>Click here to expand description</i>)
+</summary>
+<div style="margin-top:10px;">
+
 <ul>
-<li><h4 id="metric.py"><strong>metric.py</strong></h4>
-<ul>
-<li><ins>
-Description:
-</ins>
-mectric.csv mectric_by_sp.csv</li>
-</ul></li>
-<li><h4 id="figure_2.py"><strong>figure_2.py</strong></h4>
-<ul>
-<li><ins>
-Description:
-</ins>
-It reproduces Figure 2 of the article.</li>
-<li><ins>
-Inputs:
-</ins>
-/outputs/abundances_results/mectric.csv</li>
-<li><ins>
-Outpus:
-</ins>
-A .jpeg file in <code>outputs/abundances_results</code>.</li>
-</ul></li>
-<li><h4 id="figure_3.py"><strong>figure_3.py</strong></h4>
-<ul>
-<li><ins>
-Description:
-</ins>
-It reproduces Figure 3 of the article.</li>
-<li><ins>
-Inputs:
-</ins>
-../outputs/abundances_results/mectric_by_sp.csv” path_dir =
-“../inputs/data_RF_RSL/” data = “Galaxy117-Sort_on_data_82_n”</li>
-<li><ins>
-Outpus:
-</ins>
-A .jpeg file in <code>outputs/abundances_results</code>.</li>
-</ul></li>
+<li><p><u>Description:</u> For each of the three abundance models
+presented in the article (CNN-SDM without transfer learning, CNN-SDM
+with transfer learning and RF), it calculates the values of the three
+metrics presented in the article (D-squared regression score function on
+the log-transformed data, the Spearman rank-order coefficient, and the
+R-squared regression score function on Log-transformed data) on the test
+data for the 20 training cycles of the model associated with each of the
+20 folds.</p></li>
+<li><p><u>Inputs:</u> The set of .csv files in
+<code>./outputs/pred_cnn_sdm_abundance_with_tl</code>,
+<code>./outputs/pred_cnn_sdm_abundance_with_tl</code>, and
+<code>./outputs/pred_RF_abundace</code>. These correspond to the outputs
+of
+<code>pred_cnn_sdm_abundance_without_tl.py</code>,<code>pred_cnn_sdm_abundance_with_tl.py</code>,
+and <code>pred_RF_abundace.py</code> scripts respectively.</p></li>
 </ul>
+<div style="margin-top:10px;">
+<ul>
+<li><u>Outpus:</u> The <code>metric.csv</code> and
+<code>metric_by_sp.csv</code> files in
+<code>./outputs/abundances_results</code>. <code>metric.csv</code> shows
+the values of the metrics for each flod for the 3 models.
+<code>metric_by_sp.csv</code> shows the same thing but goes into more
+detail by giving the values for each species.
+</div>
+</details>
+<br></li>
+</ul>
+<details>
+<summary>
+<strong>figure_2.py</strong> (<i>Click here to expand description</i>)
+</summary>
+<div style="margin-top:10px;">
+
+<ul>
+<li><p><u>Description:</u> It reproduces Figure 2 of the
+article.</p></li>
+<li><p><u>Inputs:</u> The <code>mectric.csv</code> file in
+<code>./outputs/abundances_results/</code>. This file is one of the
+outputs of <code>metric.py</code>.</p></li>
+</ul>
+<div style="margin-top:10px;">
+<ul>
+<li><u>Outpus:</u> A .jpeg file with a name starting with
+<code>figure_2</code> in <code>./outputs/abundances_results</code>.
+</div>
+</details>
+<br></li>
+</ul>
+<details>
+<summary>
+<strong>figure_3.py</strong> (<i>Click here to expand description</i>)
+</summary>
+<div style="margin-top:10px;">
+
+<ul>
+<li><p><u>Description:</u> It reproduces Figure 3 of the
+article.</p></li>
+<li><p><u>Inputs:</u> The <code>mectric.csv</code> file in
+<code>./outputs/abundances_results/</code> that is a output of
+<code>metric.py</code>. The file
+<code>Galaxy117-Sort_on_data_82_n.csv</code> in
+<code>./inputs/data_RF_RSL</code> which contains the fish counts per
+site.</p></li>
+</ul>
+<div style="margin-top:10px;">
+<ul>
+<li><u>Outpus:</u> A .jpeg file with a name starting with
+<code>figure_3</code> in <code>./outputs/abundances_results</code>.</li>
+</ul>
+</div>
+</details>
 <p><br></p>
 </div>
 </div>
