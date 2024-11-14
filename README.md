@@ -13,7 +13,7 @@ Benjamin Bourel<sup>1*</sup>, Alexis Joly<sup>1</sup>, Maximilien Servajean<sup>
 **State of paper**: Submitted to Ecology Letter as Method paper 
 
 ## **I. Aim of this GitHug repository**
-The aim of this repository is to make available the codes and data needed to reproduce the experiments in our article on species distribution models (SDM). More specifically, these experiments use SDMs based on Convolutional Neural Networks (CNN-SDMs) and  SDMs based on Random Forest (RF). These codes have been designed and tested under Linux. Their compatibility with Window via software such as Anaconda is not guaranteed.
+The aim of this repository is to make available the codes and data needed to reproduce the experiments in our article on species distribution models (SDM). More specifically, these experiments use SDMs based on Convolutional Neural Networks (CNN-SDMs) and  SDMs based on Random Forest (RF).
 
 ⚠️ These codes have been designed and tested under Linux (Ubuntu 22.04). Their compatibility with Window via software such as Anaconda is not guaranteed.
 <br><br>
