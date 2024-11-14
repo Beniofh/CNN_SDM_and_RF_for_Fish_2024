@@ -73,7 +73,7 @@ python3 setup_2.py
 <br>
 
 ## **III. Using the repository**
-### **III.1. Organisation of the repository and run of the sciptes ** 
+### **III.1. Organisation of the repository and run of the sciptes** 
 The repository is organised into 6 folders:
 
 - **`scr_deep_learning_models` folder:** It contains the scripts to be run to reproduce the deep learning experiments of article (see part III.2). More specifically, linked to the species distribution models (SDMs) based on Convolutional Neural Networks(CNN-SDMs). There are also the `modules` subfolder which contains the functions called by the scripts at the root of `scr_deep_learning_models` and the `config` subfolder which contains the .yaml configuration files for the scripts at the root of `scr_deep_learning_models`.
