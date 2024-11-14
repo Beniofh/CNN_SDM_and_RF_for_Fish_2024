@@ -72,20 +72,30 @@ python3 setup_2.py
 ```
 <br>
 
-## **III.Using the repository**
-### **III.1. CNN_SDM_and_RF_for_Fish_2024 organisation** 
+## **III. Using the repository**
+### **III.1. Organisation of the repository and run of the sciptes ** 
+The repository is organised into 6 folders:
 
 - **`scr_deep_learning_models` folder:** It contains the scripts to be run to reproduce the deep learning experiments of article (see part III.2). More specifically, linked to the species distribution models (SDMs) based on Convolutional Neural Networks(CNN-SDMs). There are also the `modules` subfolder which contains the functions called by the scripts at the root of `scr_deep_learning_models` and the `config` subfolder which contains the .yaml configuration files for the scripts at the root of `scr_deep_learning_models`.
 
 - **`scr_no_deep_learning_models` folder:** It contains the scripts to be run to reproduce the no deep learning experiments of article (see part III.3). More specifically, linked to the SDMs based on Random Forest (RF).
 
-- **`scr_deep_learning_models` folder:** It contains the scripts to be run to reproduce the metrics tables and figures in the article linked to SDMs (see part III.4).
+- **`scr_deep_metrics_and_figures` folder:** It contains the scripts to be run to reproduce the metrics tables and figures in the article linked to SDMs (see part III.4).
 
 - **`malpolon` folder:** It contains a modified and unofficial version of a very old version of the `Malpolon` framework. It is a framework for making CNN-SDMs that is used by the scripts at the root of scr_deep_learning_models. You can find the current version of Malpolon [`here`](https://github.com/plantnet/malpolon).
 
 - **outputs folder:** It contains the input data for scripts at the root of `scr_deep_learning_models`, `scr_no_deep_learning_models`, and `scr_deep_learning_models` folders.
 
 - **inputs folder:** It contains the output data for scripts at the root of `scr_deep_learning_models`, `scr_no_deep_learning_models`, and `scr_deep_learning_models` folders.
+
+⚠️ To run the scripts, make sure that the current directory is the scr directory corresponding to the scripts to be executed. Otherwise, relative paths in scripts such as `../outputs/abundances_results/mectric.csv` will not work. Remember also to activate the conda environment you have created. Example:
+```script
+(base) bbourel@aconitum:~/CNN_SDM_and_RF_for_Fish_2024$ conda activate IA-m
+(IA-m) bbourel@aconitum:~/CNN_SDM_and_RF_for_Fish_2024/$ python scr_metrics_and_figures/figure_2.py 
+FileNotFoundError: [Errno 2] No such file or directory: '../outputs/abundances_results/mectric.csv'
+(IA-m) bbourel@aconitum:~/CNN_SDM_and_RF_for_Fish_2024$ cd scr_metrics_and_figures
+(IA-m) bbourel@aconitum:~/CNN_SDM_and_RF_for_Fish_2024/scr_metrics_and_figures$ python figure_2.py 
+```
 
 ### **III.2. The scripts to be run to reproduce the deep learning experiments in the articles** 
 The scripts to be run to reproduce the experiments linked to the species distribution models (SDMs) based on Convolutional Neural Networks (CNN-SDMs) are the scripts at the root of the `scr_deep_learning_models` folder. The scripts whose names start with `“cnn_sdm”`, the script `pred_cnn_sdm_presence_only.py`, and the script `pred_cnn_sdm_presence_only_for_debug.py` are identical except for the variable associated with `config_name`. This variable takes the name of one of the .yaml configuration files in the `scr_deep_learning_models/config`. Depending on the .yaml file, the scripts will perform different tasks. Finally, the scripts `pred_cnn_sdm_abundance_with_tl.py` and `pred_cnn_sdm_abundance_without_tl.py` are identical except for the parameters fold_dir_path and fold_id parameters. All the scripts are described below.
@@ -278,7 +288,7 @@ The scripts to be run to reproduce the metrics tables and figures in the article
   <summary> <b>figure_2.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
-  - <u>Description:</u> It reproduces Figure 2 of the article.
+  - <u>Description:</u> It reproduces Figure 2 of the article. Violin plots showing the model performances on the fish abundance test set over the 20 folds for (A) the D-squared regression score function on the log-transformed data (D2log), (B) the Spearman rank-order coefficient (Spearman coefficient) and (C) the R-squared regression score function on Log-transformed data (R2log). For these three metrics, the closer the value is to 1, the better the model. Std = Standard deviation.
   
   - <u>Inputs:</u> The `mectric.csv` file in `./outputs/abundances_results/`. This file is one of the outputs of `metric.py`.
 
@@ -291,7 +301,7 @@ The scripts to be run to reproduce the metrics tables and figures in the article
   <summary> <b>figure_3.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
-  - <u>Description:</u> It reproduces Figure 3 of the article.
+  - <u>Description:</u> It reproduces Figure 3 of the article. D-squared regression score function on the log-transformed data (D2Log) deviation by species between CNN-SDM with transfer learning and Random Forest calculated for each of the 20 folds. The percentage in brackets next to the name of each species indicates the percentage of the site studied on which they are present.
   
   - <u>Inputs:</u> The `mectric.csv` file in `./outputs/abundances_results/` that is a output of `metric.py`. The file `Galaxy117-Sort_on_data_82_n.csv` in `./inputs/data_RF_RSL` which contains the fish counts per site.
 
@@ -301,5 +311,5 @@ The scripts to be run to reproduce the metrics tables and figures in the article
 <br>
 
 ## **Acknowledgments**
-This work has been mainly funded by the IA-Biodiv ANR project FISH-PREDICT (ANR-21-AAFI-0001-01). It was also partially funded by the European Union’s Horizon research and innovation program under grant agreement No 101060639 (MAMBO project) and No 101060693 (GUARDEN project). This work was granted access to the HPC resources of IDRIS under the allocation 2022- AD011013891 made by GENCI ».
+This work has been mainly funded by the IA-Biodiv ANR project FISH-PREDICT (ANR-21-AAFI-0001-01). It was also partially funded by the European Union’s Horizon research and innovation program under grant agreement No 101060639 (MAMBO project) and No 101060693 (GUARDEN project). This work was granted access to the HPC resources of IDRIS under the allocation 2022- AD011013891 made by GENCI ».
  

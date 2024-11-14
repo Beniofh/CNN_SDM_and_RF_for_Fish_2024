@@ -366,9 +366,8 @@ MARBEC, University of Montpellier, CNRS, IFREMER, IRD, Montpellier,
 France<br> 5 CRETUS - Department of Zoology, Genetics and Physical
 Anthropology, University of Santiago de Compostela, Santiago de
 Compostela, Spain<br> * Corresponding author: <a href="mailto:benjamin.bourel@inria.fr" class="email">benjamin.bourel@inria.fr</a></p>
-<p><span style="color:green"> <strong>DOI of paper</strong> :
-XXXXXXXXXXXXX<br> <strong>State of paper</strong> : Submitted to Ecology
-Letter as Method paper </span> <br><br><br></p>
+<p><strong>DOI of paper</strong>: XXXXXXXXXXXXX<br> <strong>State of
+paper</strong>: Submitted to Ecology Letter as Method paper</p>
 <div id="i.-aim-of-this-githug-repository" class="section level2">
 <h2><strong>I. Aim of this GitHug repository</strong></h2>
 <p>The aim of this repository is to make available the codes and data
@@ -425,12 +424,12 @@ Number of CUDA-compatible devices found: 1</code></pre>
 </div>
 <div id="ii.3.-downloading-data" class="section level3">
 <h3><strong>II.3. Downloading data</strong></h3>
-<p><span style="color:green"> The input and output data used in our
-article and needed to run the scripts are not directly on the GitHub
-repository because they are too large. This data is available <a href="https://lab.plantnet.org/seafile/d/387e43c4f1ae495c96ba/"><code>here</code></a>.
+<p>The input and output data used in our article and needed to run the
+scripts are not directly on the GitHub repository because they are too
+large. This data is available <a href="https://lab.plantnet.org/seafile/d/387e43c4f1ae495c96ba/"><code>here</code></a>.
 They should be available in Inria (National Institute for Research in
-Digital Science and Technology) open data repository in the near future.
-</span></p>
+Digital Science and Technology) open data repository in the near
+future.</p>
 <p>The downloadable data consists of three .zip files :<br></p>
 <ul>
 <li><p>The <strong><code>inputs.zip</code></strong> (7 Go) contains the
@@ -471,11 +470,12 @@ python3 setup_2.py</code></pre>
 <p><br></p>
 </div>
 </div>
-<div id="iii.using-the-repository" class="section level2">
-<h2><strong>III.Using the repository</strong></h2>
-<div id="iii.1.-cnn_sdm_and_rf_for_fish_2024-organisation" class="section level3">
-<h3><strong>III.1. CNN_SDM_and_RF_for_Fish_2024
-organisation</strong></h3>
+<div id="iii.-using-the-repository" class="section level2">
+<h2><strong>III. Using the repository</strong></h2>
+<div id="iii.1.-organisation-of-the-repository-and-run-of-the-sciptes" class="section level3">
+<h3><strong>III.1. Organisation of the repository and run of the sciptes
+</strong></h3>
+<p>The repository is organised into 6 folders:</p>
 <ul>
 <li><p><strong><code>scr_deep_learning_models</code> folder:</strong> It
 contains the scripts to be run to reproduce the deep learning
@@ -490,9 +490,10 @@ at the root of <code>scr_deep_learning_models</code>.</p></li>
 It contains the scripts to be run to reproduce the no deep learning
 experiments of article (see part III.3). More specifically, linked to
 the SDMs based on Random Forest (RF).</p></li>
-<li><p><strong><code>scr_deep_learning_models</code> folder:</strong> It
-contains the scripts to be run to reproduce the metrics tables and
-figures in the article linked to SDMs (see part III.4).</p></li>
+<li><p><strong><code>scr_deep_metrics_and_figures</code>
+folder:</strong> It contains the scripts to be run to reproduce the
+metrics tables and figures in the article linked to SDMs (see part
+III.4).</p></li>
 <li><p><strong><code>malpolon</code> folder:</strong> It contains a
 modified and unofficial version of a very old version of the
 <code>Malpolon</code> framework. It is a framework for making CNN-SDMs
@@ -507,6 +508,17 @@ scripts at the root of <code>scr_deep_learning_models</code>,
 <code>scr_no_deep_learning_models</code>, and
 <code>scr_deep_learning_models</code> folders.</p></li>
 </ul>
+<p>⚠️ To run the scripts, make sure that the current directory is the
+scr directory corresponding to the scripts to be executed. Otherwise,
+relative paths in scripts such as
+<code>../outputs/abundances_results/mectric.csv</code> will not work.
+Remember also to activate the conda environment you have created.
+Example:</p>
+<pre class="script"><code>(base) bbourel@aconitum:~/CNN_SDM_and_RF_for_Fish_2024$ conda activate IA-m
+(IA-m) bbourel@aconitum:~/CNN_SDM_and_RF_for_Fish_2024/$ python scr_metrics_and_figures/figure_2.py 
+FileNotFoundError: [Errno 2] No such file or directory: &#39;../outputs/abundances_results/mectric.csv&#39;
+(IA-m) bbourel@aconitum:~/CNN_SDM_and_RF_for_Fish_2024$ cd scr_metrics_and_figures
+(IA-m) bbourel@aconitum:~/CNN_SDM_and_RF_for_Fish_2024/scr_metrics_and_figures$ python figure_2.py </code></pre>
 </div>
 <div id="iii.2.-the-scripts-to-be-run-to-reproduce-the-deep-learning-experiments-in-the-articles" class="section level3">
 <h3><strong>III.2. The scripts to be run to reproduce the deep learning
@@ -528,7 +540,7 @@ for the parameters fold_dir_path and fold_id parameters. All the scripts
 are described below. <br></p>
 <details>
 <summary>
-<strong>cnn_sdm_presence_only.py</strong> (<i> Click here to expand
+<b>cnn_sdm_presence_only.py</b> (<i> Click here to expand
 description</i>)
 </summary>
 <div style="margin-top:10px;">
@@ -556,11 +568,8 @@ presence-only is shown in the .csv. Each subfolder corresponds to a type
 of environmental data. In each subfolder, a raster is associated with
 each presence-only, and the name of the raster begins with the ID of the
 associated presence-only.</p></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> It is a folder named according to the date and time
-the script is run (values after seconds are miliseconds) placed in
+<li><p><u>Outpus:</u> It is a folder named according to the date and
+time the script is run (values after seconds are miliseconds) placed in
 <code>./outputs/cnn_sdm_presence_only subfolder</code>. This subfolder
 contains .png and .csv files that can be used to view the progress of
 the metrics during the training. There is also a .ckpt (checkpointing)
@@ -571,15 +580,15 @@ values with calculated values and converts relative paths into absolute
 paths. This .yaml file shows the configuration after this automation
 step. To see the real original configuration, go to the
 <code>.hydra</code> subfolder and look at the <code>config.yaml</code>
-file.
+file.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 <details>
 <summary>
-<strong>cnn_sdm_presence_only_for_debug.py</strong> (<i>Click here to
-expand description</i>)
+<b>cnn_sdm_presence_only_for_debug.py</b> (<i>Click here to expand
+description</i>)
 </summary>
 <div style="margin-top:10px;">
 
@@ -598,20 +607,17 @@ changed.</p></li>
 <li><p><u>Inputs:</u> The data in
 <code>inputs/data_Gbif_for_debug</code>. Inputs are organised as for
 <code>cnn_sdm_presence_only.py</code>.</p></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> The same type as
+<li><p><u>Outpus:</u> The same type as
 <code>cnn_sdm_presence_only.py</code> but located in
-<code>./outputs/cnn_sdm_presence_only_for_debug</code>.
+<code>./outputs/cnn_sdm_presence_only_for_debug</code>.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 <details>
 <summary>
-<strong>cnn_sdm_abundance_without_tl.py</strong> (<i>Click here to
-expand description</i>)
+<b>cnn_sdm_abundance_without_tl.py</b> (<i>Click here to expand
+description</i>)
 </summary>
 <div style="margin-top:10px;">
 
@@ -656,18 +662,15 @@ the occurrence model in order to adapt the new model is found in
 rasters (one in each subfolder) associated with occurrence no.
 3853246815.</li>
 </ul></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> The same type as cnn_sdm_presence_only.py but located
-in <code>./outputs/cnn_sdm_abundance_without_tl</code>.
+<li><p><u>Outpus:</u> The same type as cnn_sdm_presence_only.py but
+located in <code>./outputs/cnn_sdm_abundance_without_tl</code>.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 <details>
 <summary>
-<strong>cnn_sdm_abundance_with_tl.py</strong> (<i>Click here to expand
+<b>cnn_sdm_abundance_with_tl.py</b> (<i>Click here to expand
 description</i>)
 </summary>
 <div style="margin-top:10px;">
@@ -704,19 +707,16 @@ used for transfer learning can be found in the folder
 This folder <code>2023-10-06_16-38_085373</code> is the output of
 cnn_sdm_presence_only.py which was used in the article.</li>
 </ul></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> The same type as
+<li><p><u>Outpus:</u> The same type as
 <code>cnn_sdm_presence_only.py</code> but located in
-<code>./outputs/cnn_sdm_abundance_with_tl</code>.
+<code>./outputs/cnn_sdm_abundance_with_tl</code>.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 <details>
 <summary>
-<strong>pred_cnn_sdm_presence_only.py</strong> (<i>Click here to expand
+<b>pred_cnn_sdm_presence_only.py</b> (<i>Click here to expand
 description</i>)
 </summary>
 <div style="margin-top:10px;">
@@ -742,19 +742,16 @@ be found in the folder
 This folder <code>2023-10-06_16-38_085373</code> is the output of
 <code>cnn_sdm_presence_only.py</code> which was used in the
 article.</p></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> The metic values are printed directly to the
-terminal.
+<li><p><u>Outpus:</u> The metic values are printed directly to the
+terminal.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 <details>
 <summary>
-<strong>pred_cnn_sdm_presence_only_for_debug.py</strong> (<i>Click here
-to expand description</i>)
+<b>pred_cnn_sdm_presence_only_for_debug.py</b> (<i>Click here to expand
+description</i>)
 </summary>
 <div style="margin-top:10px;">
 
@@ -779,19 +776,16 @@ be found in the folder
 This folder <code>2024-11-06_12-30-28_624128</code> is a output of
 cnn_sdm_presence_only_for_debug.py.</li>
 </ul></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> The metic values are printed directly to the
-terminal.
+<li><p><u>Outpus:</u> The metic values are printed directly to the
+terminal.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 <details>
 <summary>
-<strong>pred_cnn_sdm_abundance_without_tl.py</strong> (<i>Click here to
-expand description</i>)
+<b>pred_cnn_sdm_abundance_without_tl.py</b> (<i>Click here to expand
+description</i>)
 </summary>
 <div style="margin-top:10px;">
 
@@ -822,22 +816,19 @@ metadata file indicating which fold of the article each folder
 corresponds to (this .ods file has been completed manually and is not
 used as input).</li>
 </ul></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> The files in
+<li><p><u>Outpus:</u> The files in
 <code>./outputs/pred_cnn_sdm_abundance_without_tl</code>, 20 .csv files
 with predictions per site and 20 .csv files where the predictions are
 staked. These 20 .csv files are numbered from 0 to 19 and correspond
-respectively to the flods 0 to 19 mentioned in the article.
+respectively to the flods 0 to 19 mentioned in the article.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 <details>
 <summary>
-<strong>pred_cnn_sdm_abundance_with_tl.py</strong> (<i>Click here to
-expand description</i>)
+<b>pred_cnn_sdm_abundance_with_tl.py</b> (<i>Click here to expand
+description</i>)
 </summary>
 <div style="margin-top:10px;">
 
@@ -850,14 +841,11 @@ each site.</p></li>
 <code>pred_cnn_sdm_abundance_without_tl.py</code>.</p></li>
 <li><p><u>Inputs:</u> As pred_cnn_sdm_abundance_without_tl.py but in
 <code>./inputs/outputs_cnn_sdm_abundance_with_tl</code>.</p></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> As pred_cnn_sdm_abundance_without_tl.py but in
-<code>./outputs/pred_cnn_sdm_abundance_with_tl</code>.
+<li><p><u>Outpus:</u> As pred_cnn_sdm_abundance_without_tl.py but in
+<code>./outputs/pred_cnn_sdm_abundance_with_tl</code>.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 </div>
 <div id="iii.3.-the-scripts-to-be-run-to-reproduce-the-deep-learning-experiments-in-the-articles" class="section level3">
@@ -869,7 +857,7 @@ scripts at the root of the <code>scr_no_deep_learning_models</code>
 folder. All the scripts are described below. <br></p>
 <details>
 <summary>
-<strong>pred_RF_presence-only.py</strong> (<i>Click here to expand
+<b>pred_RF_presence-only.py</b> (<i>Click here to expand
 description</i>)
 </summary>
 <div style="margin-top:10px;">
@@ -888,19 +876,16 @@ sdm_abundance_presence_only.py.</p></li>
 <code>./inputs/data_RF_Gbif</code>. These are lists of occurrences with
 environmental data in one file and the split between training,
 validation and test subsets in the second.</p></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> Top 1, 5, 10 and 20 micro and macro accuracy values
-for the train, validation and test set printed directly to the terminal.
+<li><p><u>Outpus:</u> Top 1, 5, 10 and 20 micro and macro accuracy
+values for the train, validation and test set printed directly to the
+terminal.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 <details>
 <summary>
-<strong>pred_RF_abundace.py</strong> (<i>Click here to expand
-description</i>)
+<b>pred_RF_abundace.py</b> (<i>Click here to expand description</i>)
 </summary>
 <div style="margin-top:10px;">
 
@@ -925,19 +910,17 @@ test) associated with each count. These 20 .csv files are numbered from
 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in
 the article.</li>
 </ul></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> The files in <code>./outputs/pred_RF_abundace</code>,
-20 .csv files with predictions per site and 20 .csv files where the
-predictions are staked. These 20 .csv files are numbered from 0 to 19
-and correspond respectively to the flods 0 to 19 mentioned in the
-article. For each fold, there is also the mean decrease in impurity and
-the permutation importances visible via .png files. Finally, there is
-the config.py file, which is a copy of the configuration used.
+<li><p><u>Outpus:</u> The files in
+<code>./outputs/pred_RF_abundace</code>, 20 .csv files with predictions
+per site and 20 .csv files where the predictions are staked. These 20
+.csv files are numbered from 0 to 19 and correspond respectively to the
+flods 0 to 19 mentioned in the article. For each fold, there is also the
+mean decrease in impurity and the permutation importances visible via
+.png files. Finally, there is the config.py file, which is a copy of the
+configuration used.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 </div>
 <div id="iii.4.-the-scripts-to-be-run-to-reproduce-tables-and-figures" class="section level3">
@@ -949,7 +932,7 @@ the article linked to SDMs are the scripts at the root of the
 described below. <br></p>
 <details>
 <summary>
-<strong>metric.py</strong> (<i>Click here to expand description</i>)
+<b>metric.py</b> (<i>Click here to expand description</i>)
 </summary>
 <div style="margin-top:10px;">
 
@@ -969,64 +952,64 @@ data for the 20 training cycles of the model associated with each of the
 of
 <code>pred_cnn_sdm_abundance_without_tl.py</code>,<code>pred_cnn_sdm_abundance_with_tl.py</code>,
 and <code>pred_RF_abundace.py</code> scripts respectively.</p></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> The <code>metric.csv</code> and
+<li><p><u>Outpus:</u> The <code>metric.csv</code> and
 <code>metric_by_sp.csv</code> files in
 <code>./outputs/abundances_results</code>. <code>metric.csv</code> shows
 the values of the metrics for each flod for the 3 models.
 <code>metric_by_sp.csv</code> shows the same thing but goes into more
-detail by giving the values for each species.
+detail by giving the values for each species.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 <details>
 <summary>
-<strong>figure_2.py</strong> (<i>Click here to expand description</i>)
+<b>figure_2.py</b> (<i>Click here to expand description</i>)
 </summary>
 <div style="margin-top:10px;">
 
 <ul>
-<li><p><u>Description:</u> It reproduces Figure 2 of the
-article.</p></li>
+<li><p><u>Description:</u> It reproduces Figure 2 of the article. Violin
+plots showing the model performances on the fish abundance test set over
+the 20 folds for (A) the D-squared regression score function on the
+log-transformed data (D2log), (B) the Spearman rank-order coefficient
+(Spearman coefficient) and (C) the R-squared regression score function
+on Log-transformed data (R2log). For these three metrics, the closer the
+value is to 1, the better the model. Std = Standard deviation.</p></li>
 <li><p><u>Inputs:</u> The <code>mectric.csv</code> file in
 <code>./outputs/abundances_results/</code>. This file is one of the
 outputs of <code>metric.py</code>.</p></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> A .jpeg file with a name starting with
-<code>figure_2</code> in <code>./outputs/abundances_results</code>.
+<li><p><u>Outpus:</u> A .jpeg file with a name starting with
+<code>figure_2</code> in <code>./outputs/abundances_results</code>.</p>
 </div>
 </details>
-<br></li>
+<p><br></p></li>
 </ul>
 <details>
 <summary>
-<strong>figure_3.py</strong> (<i>Click here to expand description</i>)
+<b>figure_3.py</b> (<i>Click here to expand description</i>)
 </summary>
 <div style="margin-top:10px;">
 
 <ul>
-<li><p><u>Description:</u> It reproduces Figure 3 of the
-article.</p></li>
+<li><p><u>Description:</u> It reproduces Figure 3 of the article.
+D-squared regression score function on the log-transformed data (D2Log)
+deviation by species between CNN-SDM with transfer learning and Random
+Forest calculated for each of the 20 folds. The percentage in brackets
+next to the name of each species indicates the percentage of the site
+studied on which they are present.</p></li>
 <li><p><u>Inputs:</u> The <code>mectric.csv</code> file in
 <code>./outputs/abundances_results/</code> that is a output of
 <code>metric.py</code>. The file
 <code>Galaxy117-Sort_on_data_82_n.csv</code> in
 <code>./inputs/data_RF_RSL</code> which contains the fish counts per
 site.</p></li>
-</ul>
-<div style="margin-top:10px;">
-<ul>
-<li><u>Outpus:</u> A .jpeg file with a name starting with
-<code>figure_3</code> in <code>./outputs/abundances_results</code>.</li>
-</ul>
+<li><p><u>Outpus:</u> A .jpeg file with a name starting with
+<code>figure_3</code> in <code>./outputs/abundances_results</code>.</p>
 </div>
 </details>
-<p><br></p>
+<p><br></p></li>
+</ul>
 </div>
 </div>
 <div id="acknowledgments" class="section level2">
@@ -1036,7 +1019,7 @@ FISH-PREDICT (ANR-21-AAFI-0001-01). It was also partially funded by the
 European Union’s Horizon research and innovation program under grant
 agreement No 101060639 (MAMBO project) and No 101060693 (GUARDEN
 project). This work was granted access to the HPC resources of IDRIS
-under the allocation 2022- AD011013891 made by GENCI ».</p>
+under the allocation 2022- AD011013891 made by GENCI ».</p>
 </div>
 </div>
 
