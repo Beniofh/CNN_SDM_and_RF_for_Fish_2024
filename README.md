@@ -15,7 +15,7 @@ Benjamin Bourel<sup>1*</sup>, Alexis Joly<sup>1</sup>, Maximilien Servajean<sup>
 ## **I. Aim of this GitHug repository**
 The aim of this repository is to make available the codes and data needed to reproduce the experiments in our article on species distribution models (SDM). More specifically, these experiments use SDMs based on Convolutional Neural Networks (CNN-SDMs) and  SDMs based on Random Forest (RF).
 
-⚠️ These codes have been designed and tested under Linux (Ubuntu 22.04). Their compatibility with Window via software such as Anaconda is not guaranteed.
+⚠️ **These codes have been designed and tested under `Linux (Ubuntu 22.04)`**. Their compatibility with `Windows` via software such as [`Anaconda`](https://www.anaconda.com/) is not guaranteed. If you still want to test under `Windows` with `Anaconda`, make sure that Anaconda's current directory is the one containing the script you want to run.
 <br><br>
 
 ## **II. Installation** 
