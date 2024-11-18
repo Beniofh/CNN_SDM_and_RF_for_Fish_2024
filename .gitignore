@@ -16,3 +16,5 @@ outputs/pred_cnn_sdm_abundance_with_tl
 outputs/pred_cnn_sdm_abundance_without_tl
 outputs/pred_RF_abundace
 downloads/*.zip
+.Rhistory
+scr_deep_learning_models/brouillon
