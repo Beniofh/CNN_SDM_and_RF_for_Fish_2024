@@ -1,4 +1,4 @@
-# **Data and code for the scientific paper: "From presence-only to abundance species distribution models using transfer learning"**
+# **Data and scripts for the scientific paper: "From presence-only to abundance species distribution models using transfer learning"**
  
 Benjamin Bourel<sup>1*</sup>, Alexis Joly<sup>1</sup>, Maximilien Servajean<sup>2,3</sup>, Simon Bettinger<sup>4</sup>, José Antonio Sanabria Fernández<sup>5</sup>, David Mouillot<sup>4</sup>
 
@@ -13,9 +13,11 @@ Benjamin Bourel<sup>1*</sup>, Alexis Joly<sup>1</sup>, Maximilien Servajean<sup>
 **State of paper**: Submitted to Ecology Letter as Method paper 
 
 ## **I. Aim of this GitHug repository**
-The aim of this repository is to make available the codes and data needed to reproduce the experiments in our article on species distribution models (SDM). More specifically, these experiments use SDMs based on Convolutional Neural Networks (CNN-SDMs) and  SDMs based on Random Forest (RF).
+The aim of this repository is to make available the scripts and data needed to reproduce the experiments in our article on species distribution models (SDM). More specifically, these experiments use SDMs based on Convolutional Neural Networks (CNN-SDMs) and  SDMs based on Random Forest (RF).
 
-⚠️ **These codes have been designed and tested under `Linux (Ubuntu 22.04)`**. Their compatibility with `Windows` via software such as [`Anaconda`](https://www.anaconda.com/) is not guaranteed. If you still want to test under `Windows` with `Anaconda`, make sure that Anaconda's current directory is the one containing the script you want to run.
+⚠️ For layout reasons, we have changed the names of the environmental rasters in the article (**Table 1** in the article). At the root of this repository, you will find a file called `Table_of_correspondence_lables.ods` which is a **raster label matching table between the article and the GitHub repository**. 
+
+⚠️ **The scripts have been designed and tested under `Linux (Ubuntu 22.04)`**. Their compatibility with `Windows` via software such as [`Anaconda`](https://www.anaconda.com/) is not guaranteed. If you still want to test under `Windows` with `Anaconda`, make sure that Anaconda's current directory is the one containing the script you want to run.
 <br><br>
 
 ## **II. Installation** 
