@@ -29,7 +29,7 @@ def stats(series):
     })
 
 # Charger le fichier CSV dans un DataFrame
-df = pd.read_csv("../outputs/abundances_results/mectric_by_sp.csv")
+df = pd.read_csv("../outputs/abundances_results/metric_by_sp.csv")
 
 # Séparer les données pour deux modèles différents
 df_2 = df[df['model'] == "CNN_SDM_with_tl"]

@@ -176,7 +176,7 @@ y_val = y[df.subset=='val']
 X_test = X[df.subset=='test']
 y_test = y[df.subset=='test']
 # %% test random forest
-rf = RandomForestClassifier(max_depth=10)
+rf = RandomForestClassifier(max_depth=10, random_state=42)
 rf.fit(X_train, y_train)
 #print(f'Top-1 accuracy : {rf.score(X_val, y_val)}')
 

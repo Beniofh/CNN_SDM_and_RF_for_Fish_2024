@@ -5,7 +5,7 @@ import seaborn as sns
 from datetime import datetime
 
 # Charger les données
-df = pd.read_csv("../outputs/abundances_results/mectric.csv")
+df = pd.read_csv("../outputs/abundances_results/metric.csv")
 
 # Calculer les écarts types dynamiquement
 def calculate_std(series_list, df):

@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_absolute_error, r2_score, explained_variance_score, max_error, mean_squared_error, d2_absolute_error_score, median_absolute_error
 from scipy.stats import spearmanr, pearsonr
+import os
 
 # Dossiers et fichiers
 
@@ -16,7 +17,8 @@ data_sets = {
     },
     'RF': {
         'files': [f'pred_flod_{i}' for i in range(20)],
-        'path': '../inputs/output_RF_abundace/{}.csv'
+        'path': '../outputs/pred_RF_abundance/{}.csv'
+        #'path': '../inputs/output_RF_abundace/{}.csv'
     },
 
 }
@@ -111,6 +113,7 @@ def compute_metrics_by_sp(df_pred, df_true):
 # Renommer les colonnes avec les stats
 path_dir = "../inputs/data_RF_RSL/"
 data = "Galaxy117-Sort_on_data_82_n"
+output_dir = '../outputs/abundances_results'
 df = pd.read_csv(path_dir + "/" + data + ".csv", sep=',')
 df = df.iloc[:, 9:]
 results = df.apply(stats)
@@ -224,5 +227,9 @@ for metric_name_by_sp in metric_names_by_sp:
             data_by_site.loc[len(data_by_site)] = [model_key, metric_name_by_sp, i] + list(data_sets[model_key]['metrics_by_sp'][i][metric_name_by_sp])
 
 df_metrics = pd.DataFrame(data)
-df_metrics.to_csv(f'../outputs/abundances_results/mectric.csv', index=False)
-data_by_site.to_csv(f'../outputs/abundances_results/mectric_by_sp.csv', index=False)
+
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+df_metrics.to_csv(f'{output_dir}/metric.csv', index=False)
+data_by_site.to_csv(f'{output_dir}/metric_by_sp.csv', index=False)

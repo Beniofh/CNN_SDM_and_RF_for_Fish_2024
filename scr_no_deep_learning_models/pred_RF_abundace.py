@@ -18,7 +18,7 @@ start_time = time.time()
 
 # %% parameters
 hybride = 'off'
-dir_out = 'pred_RF_abundace'
+dir_out = 'pred_RF_abundance'
 index = 'SurveyID'
 df_init = pd.read_csv('../inputs/data_RF_RSL/Galaxy117-Sort_on_data_82_n_vec_value.csv', sep=',', low_memory=False)
 ResNet_dir = '../inputs/outputs_cnn_sdm_abundance_with_tl/'        
@@ -137,7 +137,15 @@ def process_fold(x):
     y_test = y[df.subset == 'test']
 
     # %% test random forest
-    rf = RandomForestRegressor(max_depth=10, criterion="absolute_error")
+    #rf = RandomForestRegressor(max_depth=10, criterion="absolute_error")
+    rf = RandomForestRegressor(bootstrap=False,
+                               max_features=19,
+                               min_samples_split=10,
+                               n_estimators=50,
+                               criterion="absolute_error",
+                               max_depth=None, 
+                               n_jobs=-1,
+                               random_state=42,)
     rf.fit(X_train, y_train)
 
    
@@ -196,8 +204,8 @@ def process_fold(x):
     df_final_stack.columns=["SurveyID", "specie", "subset","pred", "true"]
         
     # %% save predictions
-    df_final.to_csv('../outputs/' + dir_out + '/test_pred_flod_' + str(x) + '.csv', index=False)
-    df_final_stack.to_csv('../outputs/' + dir_out + '/test_pred_flod_' + str(x) + '_stacked.csv', index=False)
+    df_final.to_csv('../outputs/' + dir_out + '/pred_flod_' + str(x) + '.csv', index=False)
+    df_final_stack.to_csv('../outputs/' + dir_out + '/pred_flod_' + str(x) + '_stacked.csv', index=False)
 
     # %% compute and save Mean Decrease in Impurity graph
     mdi_importances = pd.Series(

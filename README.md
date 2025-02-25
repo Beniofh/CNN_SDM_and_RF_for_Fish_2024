@@ -237,7 +237,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
   </details>
 <br>
 
-### **III.3. The scripts to be run to reproduce the deep learning experiments in the articles**
+### **III.3. The scripts to be run to reproduce the no deep learning experiments in the articles**
 The scripts to be run to reproduce the experiments linked to the species distribution models (SDMs) based on Random Forest (RF) are the scripts at the root of the `scr_no_deep_learning_models` folder. All the scripts are described below.
 <br>
 
@@ -246,6 +246,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
   <div style="margin-top:10px;">
   
   - <u>Description:</u> It trains a CNN-SDM to predict the occurrences of 181 fish species based on 62,241 presence-only from Gbif. For each occurrence of fish, the corresponding environmental dataset is made up of 15 rasters representing 14 environmental covariates and a satellite image. RFs cannot deal directly with the rasterised environmental data as the CNN-SDM does (this leads to strong over-fitting). To solve this problem, we use the mean of the pixels and the standard deviation of each raster used with sdm_abundance_presence_only.py.
+  ⚠️ Random elements are fixed with a seed for reproducibility, so the results will always be identical.
   
   - <u>Inputs:</u> The input data are .csv in `./inputs/data_RF_Gbif`. These are lists of occurrences with environmental data in one file and the split between training, validation and test subsets in the second. 
 
@@ -259,12 +260,29 @@ The scripts to be run to reproduce the experiments linked to the species distrib
   <div style="margin-top:10px;">
 
   - <u>Description:</u> It is used to train RF models for predicting species abundance based on 406 fish counts representing 47 species. The count data comes from the database of the Reef Life Survey program carried out in the Mediterranean Sea between 2011 and 2020. RFs cannot deal directly with the rasterised environmental data as the CNN-SDM does (this leads to strong over-fitting). To solve this problem, we use the mean of the pixels and the standard deviation of each raster used with sdm_abundance_without_tl.py. This script does this 20 times, once for each fold in the article.
+  ⚠️ Random elements are fixed with a seed for reproducibility, so the results will always be identical.
   
   - <u>Inputs:</u> The input data can be found in two folders.
     - The file `Galaxy117-Sort_on_data_82_n_vec_value.csv` in `./inputs/data_RF_RSL` which contains the fish counts per site and the values of the environmental variables for each site.
     - The 20 .csv files in `./inputs/data_RLS`. These 20 .csv files contain the same information except for the subset (train, val, or test) associated with each count. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article.  
 
   - <u>Outpus:</u> The files in `./outputs/pred_RF_abundace`, 20 .csv files with predictions per site and 20 .csv files where the predictions are staked. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article. For each fold, there is also the mean decrease in impurity and the permutation importances visible via .png files. Finally, there is the config.py file, which is a copy of the configuration used.
+  </div>
+  </details>
+<br>
+
+  <details>
+  <summary> <b>RF_abundace_optimisation.py</b> (<i>Click here to expand description</i>)</summary>
+  <div style="margin-top:10px;">
+
+  - <u>Description:</u> This script allows you to search for the best hyperparameters of the random forest for abundance data. This script optimises the hyperparameters of a random forest by testing all combinations of values and selecting the best one. It performs cross-validation to evaluate each combination and selects the one that gives the best results. Optimisation is carried out for the following hyperparameters: the number of randomly drawn candidate variables (max_feature), the node size (min_sample_split), the number of trees (n_estimators), the replacement (bootstrap), and the sample size (max_samples). Cross-validation is carried out with 5 flods drawn at random from the 20 folds in `./inputs/data_RLS` (see the input section). The model is trained on the training data and evaluated on the validation data. The evaluation metric is the mean absolute negative error (the script maximises the metric, using the mean absolute negative error is the same as minimising the mean absolute error). For more details, see Document S1 in the additional material for the article linked to this GitHug repository. 
+  ⚠️ Random elements are fixed with a seed for reproducibility, so the results will always be identical.
+  
+  - <u>Inputs:</u> The input data can be found in two folders.
+    - The file `Galaxy117-Sort_on_data_82_n_vec_value.csv` in `./inputs/data_RF_RSL` which contains the fish counts per site and the values of the environmental variables for each site.
+    - The 20 .csv files in `./inputs/data_RLS`. These 20 .csv files contain the same information except for the subset (train, val, or test) associated with each count. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article.  
+
+  - <u>Outpus:</u> A .csv file whose name begins with `grid_search_results` in `./outputs/RF_abundace_optimisation` with all the metrics and configurations tested (model is trained on the training data and evaluated on the validation data). For each configuration, it indicates the score (the negative mean absolute error) of the 5 flods, the mean score and the standard deviation. This file also contains the rank of each configuration based on the mean score.
   </div>
   </details>
 <br>
