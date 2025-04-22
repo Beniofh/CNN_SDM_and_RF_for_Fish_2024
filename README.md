@@ -275,31 +275,60 @@ The scripts to be run to reproduce the experiments linked to the species distrib
   <summary> <b>RF_abundace_optimisation.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
-  - <u>Description:</u> This script allows you to search for the best hyperparameters of the random forest for abundance data. This script optimises the hyperparameters of a random forest by testing all combinations of values and selecting the best one. It performs cross-validation to evaluate each combination and selects the one that gives the best results. Optimisation is carried out for the following hyperparameters: the number of randomly drawn candidate variables (max_feature), the node size (min_sample_split), the number of trees (n_estimators), the replacement (bootstrap), and the sample size (max_samples). Cross-validation is carried out with 5 flods drawn at random from the 20 folds in `./inputs/data_RLS` (see the input section). The model is trained on the training data and evaluated on the validation data. The evaluation metric is the mean absolute negative error (the script maximises the metric, using the mean absolute negative error is the same as minimising the mean absolute error). For more details, see Document S1 in the additional material for the article linked to this GitHug repository. 
+  - <u>Description:</u> This script allows you to search for the best hyperparameters of the random forest for abundance data. This script optimises the hyperparameters of a random forest by testing all combinations of values and selecting the best one. It performs cross-validation to evaluate each combination and selects the one that gives the best results. Optimisation is carried out for the following hyperparameters: the number of randomly drawn candidate variables (max_feature), the node size (min_sample_split), the number of trees (n_estimators), the replacement (bootstrap), and the sample size (max_samples). Cross-validation is carried out with 5 flods drawn at random from the 20 folds in `./inputs/data_RLS` (see the input section). The model is trained on the training data and evaluated on the validation data. The evaluation metric is the mean absolute negative error (the script maximises the metric, using the mean absolute negative error is the same as minimising the mean absolute error). For more details, see Document S1 in the additional material of the article linked to this GitHug repository. 
   ⚠️ Random elements are fixed with a seed for reproducibility, so the results will always be identical.
   
   - <u>Inputs:</u> The input data can be found in two folders.
     - The file `Galaxy117-Sort_on_data_82_n_vec_value.csv` in `./inputs/data_RF_RSL` which contains the fish counts per site and the values of the environmental variables for each site.
     - The 20 .csv files in `./inputs/data_RLS`. These 20 .csv files contain the same information except for the subset (train, val, or test) associated with each count. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article.  
 
-  - <u>Outpus:</u> A .csv file whose name begins with `grid_search_results` in `./outputs/RF_abundace_optimisation` with all the metrics and configurations tested (model is trained on the training data and evaluated on the validation data). For each configuration, it indicates the score (the negative mean absolute error) of the 5 flods, the mean score and the standard deviation. This file also contains the rank of each configuration based on the mean score.
+  - <u>Outpus:</u> A .csv file whose name begins with `grid_search_results` in `./outputs/RF_abundance_optimisation` with all the metrics and configurations tested (model is trained on the training data and evaluated on the validation data). For each configuration, it indicates the score (the negative mean absolute error) of the 5 flods, the mean score and the standard deviation. This file also contains the rank of each configuration based on the mean score.
+  </div>
+  </details>
+<br>
+
+ <details>
+  <summary> <b>RF_presence_only_optimisation.py</b> (<i>Click here to expand description</i>)</summary>
+  <div style="margin-top:10px;">
+
+  - <u>Description:</u> This script allows you to search for the best hyperparameters of the random forest for presence only data. This script optimises the hyperparameters of a random forest by testing all combinations of values and selecting the best one. It performs a single cross-validation (hold-out validation) to evaluate each combination and selects the one that gives the best results. Optimisation is carried out for the following hyperparameters: the number of randomly drawn candidate variables (max_feature), the node size (min_sample_split), the number of trees (n_estimators), the replacement (bootstrap), and the sample size (max_samples). The model is trained on the training data and evaluated on the validation data. The evaluation metric is the F1 macro score. For more details, see Document S1 in the additional material of the article linked to this GitHug repository. 
+  ⚠️ Random elements are fixed with a seed for reproducibility, so the results will always be identical.
+  
+  - <u>Inputs:</u> The input data are two files in `../inputs/data_RF_Gbif`:
+    - The file `Fish-refined_subset_value.csv` which contains the fish occurrences and the values of the environmental variables for each occurrence.
+    - The file `Fish-refined_clean_subset.csv` containing the list of valid occurrences and the subsets (train, val, test) associated with each valid occurrence.
+
+  - <u>Outpus:</u> A .csv file whose name begins with `grid_search_results` in `./outputs/RF_presence_only_optimisation` with all the metrics and configurations tested (model is trained on the training data and evaluated on the validation data). For each configuration, it indicates the F1 macro score. This file also contains the rank of each configuration based on the F1 macro score.
   </div>
   </details>
 <br>
 
 ### **III.4. The scripts to be run to reproduce tables and figures**
-The scripts to be run to reproduce the metrics tables and figures in the article linked to SDMs are the scripts at the root of the `scr_metrics_and_figures` folder.. All the scripts are described below.
+The scripts to be run to reproduce the metrics tables and figures in the article linked to SDMs are the scripts at the root of the `scr_metrics_and_figures` folder. All the scripts are described below.
 <br>
 
   <details>
   <summary> <b>metric.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
-  - <u>Description:</u> For each of the three abundance models presented in the article (CNN-SDM without transfer learning, CNN-SDM with transfer learning and RF), it calculates the values of the three metrics presented in the article (D-squared regression score function on the log-transformed data, the Spearman rank-order coefficient, and the R-squared regression score function on Log-transformed data) on the test data for the 20 training cycles of the model associated with each of the 20 folds.
+  - <u>Description:</u> For each of the three abundance models presented in the article (CNN-SDM without transfer learning, CNN-SDM with transfer learning and RF), it calculates the values of the three metrics presented in the article (D-squared regression score function on the log-transformed data, the Spearman rank-order coefficient, and the R-squared regression score function on Log-transformed data) on the test data for the 20 training cycles of the model associated with each of the 20 folds. The outputs of this script were used to create Tables 2, S6, and S8 in the article.
   
   - <u>Inputs:</u> The set of .csv files in `./outputs/pred_cnn_sdm_abundance_with_tl`, `./outputs/pred_cnn_sdm_abundance_with_tl`, and `./outputs/pred_RF_abundace`. These correspond to the outputs of `pred_cnn_sdm_abundance_without_tl.py`,`pred_cnn_sdm_abundance_with_tl.py`, and `pred_RF_abundace.py` scripts respectively.
 
   - <u>Outpus:</u> The `metric.csv` and `metric_by_sp.csv` files in `./outputs/abundances_results`. `metric.csv` shows the values of the metrics for each flod for the 3 models. `metric_by_sp.csv` shows the same thing but goes into more detail by giving the values for each species. 
+  </div>
+  </details>
+<br>
+
+  <details>
+  <summary> <b>stat_test.py</b> (<i>Click here to expand description</i>)</summary>
+  <div style="margin-top:10px;">
+
+  - <u>Description:</u> For each metric (D-squared regression score function on the log-transformed data, the Spearman rank-order coefficient, and the R-squared regression score function on Log-transformed data), this script performs a Kruskal-Wallis test with Šidák p-value adjustments to check whether there were significant differences between the three abundance models presented in the article (CNN-SDM without transfer learning, CNN-SDM with transfer learning and RF). For the metrics with a p-value less than 0.05 in the Kruskal-Wallis test, the script then performs a Dunn's test to determine between which models these differences are significant (p-value < 0.05). The outputs of this script were used to create Tables 3 and S7 in the article.
+  
+  - <u>Inputs:</u> The `metric.csv` file in `./outputs/abundances_results` produced by the script `metric.py`
+
+  - <u>Outpus:</u> The results are printed in the terminal and saved in .csv files in `./outputs/abundances_results`. There is a file beginning with `stat_test_KW_` for each of the three metrics with the result of the Kruskal-Wallis test for the associated metric. There is a file beginning with `stat_test_Dunn_` for each metric with a p-value less than 0.05 in the previous Kruskal-Wallis test. These `stat_test_Dunn_` files contain the results of the Dunn's test test for the associated metric. 
   </div>
   </details>
 <br>

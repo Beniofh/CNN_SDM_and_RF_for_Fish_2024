@@ -23,15 +23,15 @@ def prepare_data(df, column_mapping):
 # Graphiques
 def plot_violin(ax, data, palette, y_label, x_sub_labels):
     sns.violinplot(ax=ax, data=data, density_norm="count", width=0.5, cut=0, linewidth=2, palette=palette, inner_kws=dict(box_width=15, whis_width=2), fill=False)
-    ax.set_ylabel(y_label, labelpad=10)
+    ax.set_ylabel(y_label, labelpad=10, fontsize=12)  # Augmenter la taille de la légende Y
     ax.set_xticks(range(len(x_sub_labels)))
-    ax.set_xticklabels(x_sub_labels)
+    ax.set_xticklabels(x_sub_labels, fontsize=12)  # Augmenter la taille des labels X
 
 def annotate_std(ax, std_devs, palette, y_offset):
     for violin, (series, sd) in zip(ax.collections, std_devs.items()):
         x = violin.get_paths()[0].vertices[:, 0].mean()
         y = violin.get_paths()[0].vertices[:, 1].min() - y_offset
-        ax.text(x, y, f"std = {sd}", ha='center', fontsize=10, color=palette[list(std_devs.keys()).index(series)])
+        ax.text(x, y, f"std = {sd}", ha='center', fontsize=12, color=palette[list(std_devs.keys()).index(series)])
 
 def main():
     # Définir les colonnes et les labels

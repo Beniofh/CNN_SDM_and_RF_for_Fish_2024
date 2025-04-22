@@ -176,9 +176,17 @@ y_val = y[df.subset=='val']
 X_test = X[df.subset=='test']
 y_test = y[df.subset=='test']
 # %% test random forest
-rf = RandomForestClassifier(max_depth=10, random_state=42)
+#rf = RandomForestClassifier(max_depth=10, random_state=42)
+rf = RandomForestClassifier(bootstrap=True,
+                            max_features='sqrt',
+                            max_samples=0.75,
+                            min_samples_split=2,
+                            n_estimators=200,
+                            criterion="log_loss",
+                            max_depth=None, 
+                            n_jobs=-1,
+                            random_state=42,)
 rf.fit(X_train, y_train)
-#print(f'Top-1 accuracy : {rf.score(X_val, y_val)}')
 
 # %% top-k accuracy validation set
 prior = df.groupby('labels')[['id']].count().sort_values('id', ascending=False)
