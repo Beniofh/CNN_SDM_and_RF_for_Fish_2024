@@ -6,13 +6,12 @@ Benjamin Bourel<sup>1*</sup>, Alexis Joly<sup>1</sup>, Maximilien Servajean<sup>
 2 IRMM, University of Montpellier, CNRS, Montpellier, France<br>
 3 AMIS, Paule Valery University, Montpellier, France<br>
 4 MARBEC, University of Montpellier, CNRS, IFREMER, IRD, Montpellier, France<br>
-5 CRETUS - Department of Zoology, Genetics and Physical Anthropology, University of Santiago de Compostela, Santiago de Compostela, Spain<br>
+5 Department of Ecology and Evolution, Doñana Biological Station (EBD-CSIC), Sevilla, Spain<br>
 \* Corresponding author: benjamin.bourel@inria.fr
 
-**DOI of paper**: XXXXXXXXXXXXX<br>
-**State of paper**: Submitted to Ecology Letter as Method paper 
+**DOI of paper**: https://doi.org/10.1111/ele.70177<br>
 
-## **I. Aim of this GitHug repository**
+## **I. Aim of this GitHub repository**
 The aim of this repository is to make available the scripts and data needed to reproduce the experiments in our article on species distribution models (SDM). More specifically, these experiments use SDMs based on Convolutional Neural Networks (CNN-SDMs) and  SDMs based on Random Forest (RF).
 
 ⚠️ For layout reasons, we have changed the names of the environmental rasters in the article (**Table 1** in the article). At the root of this repository, you will find a file called `Table_of_correspondence_lables.ods` which is a **raster label matching table between the article and the GitHub repository**. 
@@ -23,7 +22,7 @@ The aim of this repository is to make available the scripts and data needed to r
 ## **II. Installation** 
 
 ### **II.1. CUDA** 
-The scripts for the CNN-SDMs are run on the GPU. To do this, you need to install `CUDA` if it is not already installed: [`CUDA Installation guide`](https://docs.nvidia.com/cuda/index.html) and `CuDNN Installation guide`](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html).
+The scripts for the CNN-SDMs are run on the GPU. To do this, you need to install `CUDA` if it is not already installed: [`CUDA Installation guide`](https://docs.nvidia.com/cuda/index.html) and [`CuDNN Installation guide`](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html).
 
 ### **II.2. Downloading of the repository and creation of the Conda environment** 
 First, you need to retrieve the GitHub repository. To do this, open the terminal in the directory where you want to place the repository, then clone the repository.  
