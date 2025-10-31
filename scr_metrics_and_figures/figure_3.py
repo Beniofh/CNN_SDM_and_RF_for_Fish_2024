@@ -32,14 +32,15 @@ def stats(series):
 df = pd.read_csv("../outputs/abundances_results/metric_by_sp.csv")
 
 # Séparer les données pour deux modèles différents
-df_2 = df[df['model'] == "CNN_SDM_with_tl"]
 df_1 = df[df['model'] == "RF"]
+df_2 = df[df['model'] == "CNN_SDM_with_tl"]
+
 
 # Calculer la différence entre les colonnes des deux DataFrames
 df_diff = df_1.iloc[:, 1:].copy()
 df_diff.iloc[:, 2:] = (np.array(df_1.iloc[:, 3:])-1) - (np.array(df_2.iloc[:, 3:])-1)
 data_diff_1 = df_diff[df_diff["metric"] == "d2_absolute_log_error_score_by_sp"].iloc[:, 2:]
-data_diff_2 = df_diff[df_diff["metric"]=="R2_Species_log"].iloc[:, 2:]
+data_diff_2 = df_diff[df_diff["metric"] == "R2_Species_log"].iloc[:, 2:]
 
 # Renommer les colonnes avec les stats
 path_dir = "../inputs/data_RF_RSL/"
@@ -68,6 +69,19 @@ plt.subplot(1, 1, 1)
 sns.boxplot(data=data_diff_1, orient='h', palette=['#1f77b4']* 47)
 plt.xlabel('D2 Absolute Log Error (D2log) deviation\n by species between CNN-SDM with transfer learning and Random Forest')
 plt.axvline(x=0, color='red', linestyle='--', linewidth=2)
+# Mettre uniquement le nom des espèces en italique dans les labels pour l'axe y
+ax = plt.gca()
+yticklabels = ax.get_yticklabels()
+new_labels = []
+for label in yticklabels:
+    text = label.get_text()
+    # Séparer le nom de l'espèce et le pourcentage
+    if " (" in text:
+        sp, perc = text.split(" (", 1)
+        new_labels.append(r"$\it{" + sp.replace(" ", "\ ") + "}$ (" + perc)
+    else:
+        new_labels.append(text)
+ax.set_yticklabels(new_labels)
 #plt.axvline(x=0.5, color='red', linestyle=':', linewidth=2)
 #plt.axvline(x=-0.5, color='red', linestyle=':', linewidth=2)
 

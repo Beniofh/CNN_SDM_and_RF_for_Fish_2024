@@ -255,7 +255,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
 <br>
 
   <details>
-  <summary> <b>pred_RF_abundace.py</b> (<i>Click here to expand description</i>)</summary>
+  <summary> <b>pred_RF_abundance.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
   - <u>Description:</u> It is used to train RF models for predicting species abundance based on 406 fish counts representing 47 species. The count data comes from the database of the Reef Life Survey program carried out in the Mediterranean Sea between 2011 and 2020. RFs cannot deal directly with the rasterised environmental data as the CNN-SDM does (this leads to strong over-fitting). To solve this problem, we use the mean of the pixels and the standard deviation of each raster used with sdm_abundance_without_tl.py. This script does this 20 times, once for each fold in the article.
@@ -265,7 +265,7 @@ The scripts to be run to reproduce the experiments linked to the species distrib
     - The file `Galaxy117-Sort_on_data_82_n_vec_value.csv` in `./inputs/data_RF_RSL` which contains the fish counts per site and the values of the environmental variables for each site.
     - The 20 .csv files in `./inputs/data_RLS`. These 20 .csv files contain the same information except for the subset (train, val, or test) associated with each count. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article.  
 
-  - <u>Outpus:</u> The files in `./outputs/pred_RF_abundace`, 20 .csv files with predictions per site and 20 .csv files where the predictions are staked. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article. For each fold, there is also the mean decrease in impurity and the permutation importances visible via .png files. Finally, there is the config.py file, which is a copy of the configuration used.
+  - <u>Outpus:</u> The files in `./outputs/pred_RF_abundance`, 20 .csv files with predictions per site and 20 .csv files where the predictions are staked. These 20 .csv files are numbered from 0 to 19 and correspond respectively to the flods 0 to 19 mentioned in the article. For each fold, there is also the mean decrease in impurity and the permutation importances visible via .png files. Finally, there is the config.py file, which is a copy of the configuration used.
   </div>
   </details>
 <br>
@@ -310,9 +310,9 @@ The scripts to be run to reproduce the metrics tables and figures in the article
   <summary> <b>metric.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
-  - <u>Description:</u> For each of the three abundance models presented in the article (CNN-SDM without transfer learning, CNN-SDM with transfer learning and RF), it calculates the values of the three metrics presented in the article (D-squared regression score function on the log-transformed data, the Spearman rank-order coefficient, and the R-squared regression score function on Log-transformed data) on the test data for the 20 training cycles of the model associated with each of the 20 folds. The outputs of this script were used to create Tables 2, S6, and S8 in the article.
+  - <u>Description:</u> For each of the three abundance models presented in the article (CNN-SDM without transfer learning, CNN-SDM with transfer learning and RF), it calculates the values of the three metrics presented in the article (D-squared regression score function on the log-transformed data, the Spearman rank-order coefficient, and the R-squared regression score function on Log-transformed data) on the test data for the 20 training cycles of the model associated with each of the 20 folds. The outputs of this script were used to create Tables 2, S7, and S8 in the article.
   
-  - <u>Inputs:</u> The set of .csv files in `./outputs/pred_cnn_sdm_abundance_with_tl`, `./outputs/pred_cnn_sdm_abundance_with_tl`, and `./outputs/pred_RF_abundace`. These correspond to the outputs of `pred_cnn_sdm_abundance_without_tl.py`,`pred_cnn_sdm_abundance_with_tl.py`, and `pred_RF_abundace.py` scripts respectively.
+  - <u>Inputs:</u> The set of .csv files in `./outputs/pred_cnn_sdm_abundance_with_tl`, `./outputs/pred_cnn_sdm_abundance_with_tl`, and `./outputs/pred_RF_abundance`. These correspond to the outputs of `pred_cnn_sdm_abundance_without_tl.py`,`pred_cnn_sdm_abundance_with_tl.py`, and `pred_RF_abundance.py` scripts respectively.
 
   - <u>Outpus:</u> The `metric.csv` and `metric_by_sp.csv` files in `./outputs/abundances_results`. `metric.csv` shows the values of the metrics for each flod for the 3 models. `metric_by_sp.csv` shows the same thing but goes into more detail by giving the values for each species. 
   </div>
@@ -323,11 +323,12 @@ The scripts to be run to reproduce the metrics tables and figures in the article
   <summary> <b>stat_test.py</b> (<i>Click here to expand description</i>)</summary>
   <div style="margin-top:10px;">
 
-  - <u>Description:</u> For each metric (D-squared regression score function on the log-transformed data, the Spearman rank-order coefficient, and the R-squared regression score function on Log-transformed data), this script performs a Kruskal-Wallis test with Šidák p-value adjustments to check whether there were significant differences between the three abundance models presented in the article (CNN-SDM without transfer learning, CNN-SDM with transfer learning and RF). For the metrics with a p-value less than 0.05 in the Kruskal-Wallis test, the script then performs a Dunn's test to determine between which models these differences are significant (p-value < 0.05). The outputs of this script were used to create Tables 3 and S7 in the article.
+  - <u>Description:</u> For each metric (D-squared regression score function on the log-transformed data, the Spearman rank-order coefficient, and the R-squared regression score function on Log-transformed data), this script performs the statistical tests cited in the article (Test of Shapiro-Wilk, Welch's ANOVA, Dunn’s test, Pairwise permutation test) in order to see whether the differences in results between the SDM models are significant or not.
+  . The outputs of this script were used to create Table S6 in the article.
   
   - <u>Inputs:</u> The `metric.csv` file in `./outputs/abundances_results` produced by the script `metric.py`
 
-  - <u>Outpus:</u> The results are printed in the terminal and saved in .csv files in `./outputs/abundances_results`. There is a file beginning with `stat_test_KW_` for each of the three metrics with the result of the Kruskal-Wallis test for the associated metric. There is a file beginning with `stat_test_Dunn_` for each metric with a p-value less than 0.05 in the previous Kruskal-Wallis test. These `stat_test_Dunn_` files contain the results of the Dunn's test test for the associated metric. 
+  - <u>Outpus:</u> The results are printed in the terminal and saved in .csv files in `./outputs/abundances_results`. These are the files that start with `stat_test_`.
   </div>
   </details>
 <br>
@@ -354,6 +355,32 @@ The scripts to be run to reproduce the metrics tables and figures in the article
   - <u>Inputs:</u> The `mectric.csv` file in `./outputs/abundances_results/` that is a output of `metric.py`. The file `Galaxy117-Sort_on_data_82_n.csv` in `./inputs/data_RF_RSL` which contains the fish counts per site.
 
   - <u>Outpus:</u> A .jpeg file with a name starting with `figure_3` in `./outputs/abundances_results`.
+  </div>
+  </details>
+<br>
+
+ <details>
+  <summary> <b>figure_4.py</b> (<i>Click here to expand description</i>)</summary>
+  <div style="margin-top:10px;">
+
+  - <u>Description:</u> It reproduces Figure 4 of the article. Maps of Formentera, Ibiza, and Mallorca showing the average abundance (number of fish) of Serranus cabrilla over 5 km² areas between 2011 and 2022 for the true abundances, the abundances predicted by the CNN-SDM with transfer learning, the abundances predicted by the RF, and the difference between predictions and true values for the two models. The predicted abundances for each fish abundance count are based on the average of the predicted values across the 20 test folds, with the predicted abundance values in each fold first rounded up to the nearest value with a threshold of 0.05. Occurrence percentage: the percentage of fish abundance counts on which the species is present. 
+ 
+  - <u>Inputs:</u> The `mectric_by_sp.csv` file in `./outputs/abundances_results/` that is a output of `metric.py`. The file `Galaxy117-Sort_on_data_82_n.csv` in `./inputs/data_RF_RSL` which contains the fish counts per site. The 20 .csv files where the predictions are staked in `./outputs/pred_cnn_sdm_abundance_with_tl` that is a output of `pred_cnn_sdm_abundance_with_tl.py`. The 20 .csv files where the predictions are staked in `./outputs/pred_RF_abundance` that is a output of `pred_RF_abundance.py`.
+
+  - <u>Outpus:</u> A .jpeg file with a name starting with `figure_4` in `./outputs/abundances_results`.
+  </div>
+  </details>
+<br>
+
+ <details>
+  <summary> <b>Document_S2.py</b> (<i>Click here to expand description</i>)</summary>
+  <div style="margin-top:10px;">
+
+  - <u>Description:</u> It reproduces figures in Document S2 of the article (Supporting Infromation). Maps of western Mediterranean showing the true and predicted average abundance in log (x + 1) for each of the 47 species in the abundance dataset over 15 km2 areas between 2011 and 2022. For each species, there is a map of the true abundances in log (x + 1), the abundances in log (x + 1) predicted by the CNN-SDM with transfer learning, the abundances in log (x + 1) predicted by the RF, and the difference between predictions in log (x + 1) and true values in log (x + 1) for the two models. The predicted abundances for each fish abundance count are based on the average of the predicted values across the 20 test folds. Occurrence percentage: the percentage of fish abundance counts on which the species is present.
+ 
+  - <u>Inputs:</u> The `mectric_by_sp.csv` file in `./outputs/abundances_results/` that is a output of `metric.py`. The file `Galaxy117-Sort_on_data_82_n.csv` in `./inputs/data_RF_RSL` which contains the fish counts per site. The 20 .csv files where the predictions are staked in `./outputs/pred_cnn_sdm_abundance_with_tl` that is a output of `pred_cnn_sdm_abundance_with_tl.py`. The 20 .csv files where the predictions are staked in `./outputs/pred_RF_abundance` that is a output of `pred_RF_abundance.py`.
+
+  - <u>Outpus:</u> The .pnj files in `./outputs/abundances_results/pred_maps/West_Med_15_15`.
   </div>
   </details>
 <br>
