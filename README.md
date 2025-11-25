@@ -57,7 +57,7 @@ Number of CUDA-compatible devices found: 1
 ```
 
 ### **II.3. Downloading data** 
-The input and output data used in our article and required to run the scripts are not available directly on the GitHub repository as they are too large. This data is available in the Inria (National Institute for Research in Digital Science and Technology) open data repository on the French government's multidisciplinary repository: [`doi.org/10.57745/TDWEHA`](https://doi.org/10.57745/TDWEHA,).
+The input and output data used in our article and required to run the scripts are not available directly on the GitHub repository as they are too large. This data is available in the Inria (National Institute for Research in Digital Science and Technology) open data repository on the French government's multidisciplinary repository: [`doi.org/10.57745/TDWEHA`](https://doi.org/10.57745/TDWEHA).
 
 The downloadable data consists of three .zip files :<br>
 
