@@ -11,6 +11,8 @@ Benjamin Bourel<sup>1*</sup>, Alexis Joly<sup>1</sup>, Maximilien Servajean<sup>
 
 **DOI of paper**: https://doi.org/10.1111/ele.70177<br>
 
+**HAL Id**: https://hal.science/hal-05380189<br>
+
 ## **I. Aim of this GitHub repository**
 The aim of this repository is to make available the scripts and data needed to reproduce the experiments in our article on species distribution models (SDM). More specifically, these experiments use SDMs based on Convolutional Neural Networks (CNN-SDMs) and  SDMs based on Random Forest (RF).
 
@@ -55,15 +57,15 @@ Number of CUDA-compatible devices found: 1
 ```
 
 ### **II.3. Downloading data** 
-The input and output data used in our article and needed to run the scripts are not directly on the GitHub repository because they are too large. This data is available [`here`](https://lab.plantnet.org/seafile/d/387e43c4f1ae495c96ba/). They should be available in Inria (National Institute for Research in Digital Science and Technology) open data repository in the near future.
+The input and output data used in our article and required to run the scripts are not available directly on the GitHub repository as they are too large. This data is available in the Inria (National Institute for Research in Digital Science and Technology) open data repository on the French government's multidisciplinary repository: [`doi.org/10.57745/TDWEHA`](https://doi.org/10.57745/TDWEHA,).
 
 The downloadable data consists of three .zip files :<br>
 
-- The **`inputs.zip`** (7 Go) contains the basic input data required to run most of the scripts. These data are the environmental rasters for all fish counts, some environmental data for presence-only fish data, tables of fish species data (presence-only and counts), and the outputs of the training models used in the article (training metadata and trained model weights).
+- The **`inputs.zip`** (approximately 7 Go) contains the basic input data required to run most of the scripts. These data are the environmental rasters for all fish counts, some environmental data for presence-only fish data, tables of fish species data (presence-only and counts), and the outputs of the training models used in the article (training metadata and trained model weights).
 
-- The **`outputs.zip`** (522 Mo) contains examples of script outputs from the GitHub repository. Some of these outputs are required to run the scripts in the scr_metrics_and_figures folder in the GitHub repository.
+- The **`outputs.zip`** (approximately 500 Mo) contains examples of script outputs from the GitHub repository. Some of these outputs are required to run the scripts in the scr_metrics_and_figures folder in the GitHub repository.
 
-- The **`complementary_inputs.zip`** (10 Go) contains additional input data in order to run the scripts `cnn_sdm_presence_only.py` and `pred_cnn_sdm_presence_only.py` (see part III.2) that cannot be run on standard machines. These are scripts that require a lot of computing resources and which must run on supercomputers. These additional data are all environmental rasters associated with the presence of fish. ⚠️ If you cannot or do not want to run these two scripts, you do not need to download `complementary_inputs.zip`.
+- The **`complementary_inputs.zip`** (approximately 10 Go) contains additional input data in order to run the scripts `cnn_sdm_presence_only.py` and `pred_cnn_sdm_presence_only.py` (see part III.2) that cannot be run on standard machines. These are scripts that require a lot of computing resources and which must run on supercomputers. These additional data are all environmental rasters associated with the presence of fish. ⚠️ If you cannot or do not want to run these two scripts, you do not need to download `complementary_inputs.zip`.
 
 ### **II.4. Finalising the installation** 
 After downloading the data, put the files `inputs.zip`, `outputs.zip` and `complementary_inputs.zip` in `./CNN_SDM_and_RF_for_Fish_2024/downloads` (`complementary_inputs.zip` is not obligatory as stated in part II.3). Then open a terminal in `./CNN_SDM_and_RF_for_Fish_2024` and run the commands below. This will unzip the .zip files and automatically put the files in `./CNN_SDM_and_RF_for_Fish_2024/inputs` and `./CNN_SDM_and_RF_for_Fish_2024/outputs`.
